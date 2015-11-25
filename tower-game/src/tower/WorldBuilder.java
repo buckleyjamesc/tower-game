@@ -3,7 +3,7 @@ package tower;
 public class WorldBuilder {
 	
 	/**
-	 * ITSYABOY HERE
+	 * this is a no joke zone please don't joke 
 	 */
 	
 }
