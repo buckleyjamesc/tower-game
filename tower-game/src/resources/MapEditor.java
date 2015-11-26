@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-public class Main {
+public class MapEditor {
 	static String fileName = "level2";
 	static int mx = 400;
 	static int my = 300;
