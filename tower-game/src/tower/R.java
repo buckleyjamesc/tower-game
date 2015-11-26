@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.awt.geom.Line2D;
 
 import javax.imageio.ImageIO;
@@ -25,6 +24,7 @@ public class R {
 		}
 		return imageMap.get(fileName);
 	}
+	@SuppressWarnings("resource")
 	public static ArrayList<Line2D.Double> getCollisions(String fileName) throws FileNotFoundException {
 		fileName = "src/resources/" + fileName + ".collisions";
 		if(!collisionMap.containsKey(fileName)) {
@@ -42,6 +42,7 @@ public class R {
 		}
 		return collisionMap.get(fileName);
 	}
+	@SuppressWarnings("resource")
 	public static ArrayList<String> getPossibleRooms(boolean left, boolean right, boolean up, boolean down) throws FileNotFoundException {
 		int code = (left?8:0) + (right?4:0) + (up?2:0) + (down?1:0);
 		if(data.isEmpty()) {
