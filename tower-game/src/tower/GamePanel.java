@@ -14,21 +14,25 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener {
 	private JFrame frame;
-	int x = 0;
+	Player p;
+	int width, height;
+	Room[][] rooms;
 	
 	public GamePanel(JFrame frame) {
 		this.frame = frame;
+		p = new Player(0,0);
+		// Does not work yet, not enough rooms
+		// rooms = WorldBuilder.buildWorld(width, height);
+	}
+	
+	private void update() {
+		// TODO
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
         super.paintComponent(g);
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        g.setColor(Color.BLACK);
-        g.fillOval(x, 300, 10, 10);
-        
     }
 
 	@Override
@@ -36,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		// TODO Auto-generated method stub
 		while (true) {
 			try {
-				x += 1;
+				update();
 				frame.repaint();
 				Thread.sleep(17);
 			} catch (Exception e) {
