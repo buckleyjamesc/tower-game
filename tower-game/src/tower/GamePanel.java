@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	
 	public GamePanel(JFrame frame) {
 		this.frame = frame;
-		p = new Player(1200,900);
+		p = new Player(1000,1100);
 		// Does not work yet, not enough rooms
 		// rooms = WorldBuilder.buildWorld(width, height);
 		rooms = new Room[4][3];
@@ -30,8 +30,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 				rooms[i][j] = new Room("lighten");
 			}
 		}
-		rooms[1][1] = new Room("level");
-		rooms[2][1] = new Room("level2");
+		rooms[1][1] = new Room("template");
+		rooms[2][1] = new Room("template");
 		
 		
 	}
