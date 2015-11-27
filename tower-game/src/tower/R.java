@@ -30,12 +30,15 @@ public class R {
 		if(!collisionMap.containsKey(fileName)) {
 			ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 			Scanner scan = new Scanner(new File(fileName));
-			scan.useDelimiter(", \n");
-			while(scan.hasNext()) {
-				double x1 = scan.nextDouble();
-				double y1 = scan.nextDouble();
-				double x2 = scan.nextDouble();
-				double y2 = scan.nextDouble();
+			while(scan.hasNextLine()) {
+				String line = scan.nextLine();
+				Scanner scan2 = new Scanner(line);
+				scan2.useDelimiter(",");
+				System.out.println("Scanning line '" + line + "' of file " + fileName);
+				double x1 = scan2.nextDouble();
+				double y1 = scan2.nextDouble();
+				double x2 = scan2.nextDouble();
+				double y2 = scan2.nextDouble();
 				collisions.add(new Line2D.Double(x1, y1, x2, y2));
 			}
 			collisionMap.put(fileName, collisions);
@@ -47,10 +50,12 @@ public class R {
 		int code = (left?8:0) + (right?4:0) + (up?2:0) + (down?1:0);
 		if(data.isEmpty()) {
 			Scanner scan = new Scanner(new File("src/resources/data.world"));
-			scan.useDelimiter(", \n");
-			while(scan.hasNext()) {
-				String fileName = scan.next();
-				int readCode = 8*scan.nextInt() + 4*scan.nextInt() + 2*scan.nextInt() + scan.nextInt();
+			while(scan.hasNextLine()) {
+				String line = scan.nextLine();
+				Scanner scan2 = new Scanner(line);
+				scan2.useDelimiter(",");
+				String fileName = scan2.next();
+				int readCode = 8*scan2.nextInt() + 4*scan2.nextInt() + 2*scan2.nextInt() + scan2.nextInt();
 				if(!data.containsKey(readCode)) data.put(readCode, new ArrayList<String>());
 				data.get(readCode).add(fileName);
 			}

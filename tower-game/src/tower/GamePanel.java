@@ -7,7 +7,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	private JFrame frame;
 	Player p;
 	int width, height;
+	boolean keyUp, keyDown, keyLeft, keyRight;
 	Room[][] rooms;
 	
 	public GamePanel(JFrame frame) {
@@ -32,19 +35,45 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 		rooms[1][1] = new Room("template");
 		rooms[2][1] = new Room("template");
-		
-		
+		keyLeft = false;
+		keyUp = false;
+		keyRight = false;
+		keyDown = false;
 	}
 	
 	private void update() {
-		// TODO
+		p.dy += 0.15;
+		p.colliding = false;
+		double vx = p.dx;
+		double vy = p.dy;
+		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
+		collisions.add(new Line2D.Double(0,0,0,0));
+		while (!collisions.isEmpty()) {
+			collisions = new ArrayList<Line2D.Double>();
+			for(int i = 0; i < rooms.length; i++){
+				for(int j = 0; j < rooms[i].length; j++){
+					for (Line2D.Double c : rooms[i][j].getCollisions()) {
+						System.out.println("i"+i+"j"+j+":"+c.x1+","+c.y1+","+c.x2+","+c.y2);
+						if(Line2D.linesIntersect(p.x, p.y, p.x+vx, p.y+vy, c.x1+(double)(800*i), c.y1 + (double)(600*j), c.x2 + (double)(800*i), c.y2 + (double)(600*j))) {
+							collisions.add(c);
+							p.colliding = true;
+						}
+					}
+				}
+			}
+			
+		}
+		p.dx = vx;
+		p.dy = vy;
+		p.x += p.dx;
+		p.y += p.dy;
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		for(int i = 0; i < rooms.length; i++){
-			for(int j = 0; j < rooms[i].length; j++){
+		for(int i = 0; i < rooms.length; i++) {
+			for(int j = 0; j < rooms[i].length; j++) {
 				g.drawImage(rooms[i][j].getImage(), (int)(400 + 800*i - p.x), (int)(300 + 600*j - p.y), 800, 600,this);
 			}
 		}
@@ -110,24 +139,33 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_UP){
-			p.y -= 5;
+			keyUp = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			p.x -= 5;
+			keyLeft = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			p.y += 5;
+			keyDown = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			p.x += 5;
+			keyRight = true;
 		}
-		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			keyUp = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			keyLeft = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			keyDown = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			keyRight = false;
+		}
 	}
 
 	@Override
