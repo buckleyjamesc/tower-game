@@ -22,6 +22,7 @@ public class TowerGame {
         frame.pack();
         frame.add(gp);
         Thread t = new Thread(gp);
+        gp.buildWorld();
         t.start();
 	}
 }

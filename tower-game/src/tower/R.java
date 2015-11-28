@@ -24,7 +24,6 @@ public class R {
 		}
 		return imageMap.get(fileName);
 	}
-	@SuppressWarnings("resource")
 	public static ArrayList<Line2D.Double> getCollisions(String fileName) throws FileNotFoundException {
 		fileName = "src/resources/" + fileName + ".collisions";
 		if(!collisionMap.containsKey(fileName)) {
@@ -40,12 +39,13 @@ public class R {
 				double x2 = scan2.nextDouble();
 				double y2 = scan2.nextDouble();
 				collisions.add(new Line2D.Double(x1, y1, x2, y2));
+				scan2.close();
 			}
+			scan.close();
 			collisionMap.put(fileName, collisions);
 		}
 		return collisionMap.get(fileName);
 	}
-	@SuppressWarnings("resource")
 	public static ArrayList<String> getPossibleRooms(boolean left, boolean right, boolean up, boolean down) throws FileNotFoundException {
 		int code = (left?8:0) + (right?4:0) + (up?2:0) + (down?1:0);
 		if(data.isEmpty()) {
@@ -57,9 +57,13 @@ public class R {
 				String fileName = scan2.next();
 				int readCode = 8*scan2.nextInt() + 4*scan2.nextInt() + 2*scan2.nextInt() + scan2.nextInt();
 				if(!data.containsKey(readCode)) data.put(readCode, new ArrayList<String>());
+				System.out.println("Scanning line '" + line + "' of file " + "src/resources/data.world" + ", " + readCode + " -> \"" + fileName + "\"");
 				data.get(readCode).add(fileName);
+				scan2.close();
 			}
+			scan.close();
 		}
+		System.out.println("" + code + " -> \"" + data.get(code).get(0) + "\"");
 		return data.get(code);
 	}
 }
