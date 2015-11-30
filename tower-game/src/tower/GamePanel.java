@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 				rooms[i][j] = new Room(R.getPossibleRooms(true, true, true, true).get(0));
 			}
 		}
-		//rooms[2][2] = new Room(R.getPossibleRooms(true, false, false, false).get(0));
+		rooms[2][2] = new Room(R.getPossibleRooms(true, false, false, false).get(0));
 	}
 	
 	private void update() {
@@ -62,14 +62,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			}
 		}
 		double speed = 5;
+		double f = 0.9;
 		if(p.colliding && keyUp) {
-			p.dy = -10;
+			p.dy = -13;
 		}
 		if (keyLeft!=keyRight) {
+			f = 1.0;
 			if(keyLeft && p.dx > -speed) p.dx += -.75;
 			if(keyRight && p.dx < speed) p.dx += .75;
 		}
-		p.dy += .30;
+		p.dy += .50;
 		p.colliding = false;
 		double vx = p.dx;
 		double vy = p.dy;
@@ -91,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			}
 			for(Line2D.Double c : collisions) {
 				double dist = 0*c.ptLineDist(p.x, p.y);
-				double comp = 0.9*Math.sqrt(vx*vx + vy*vy)*Math.cos(Math.atan2(vy, vx) - Math.atan2(c.y2-c.y1, c.x2-c.x1));
+				double comp = f*Math.sqrt(vx*vx + vy*vy)*Math.cos(Math.atan2(vy, vx) - Math.atan2(c.y2-c.y1, c.x2-c.x1));
 				double len = c.getP1().distance(c.getP2());
 				vx = dist*(c.y1-c.y2)/len;
 				vy = dist*(c.x2-c.x1)/len;
