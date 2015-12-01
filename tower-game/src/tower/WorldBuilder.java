@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class WorldBuilder {
 	public static Room[][] buildWorld(int w, int h) {
-		Cell[][] cells = new Cell[h][h];
+		Cell[][] cells = new Cell[w][h];
 		for (int i = 0; i < w; ++i) {
 			for (int j = 0; j < h; ++j) {
 				cells[i][j] = new Cell();
@@ -72,21 +72,30 @@ public class WorldBuilder {
 				yList.add(y + 1);
 			}
 		}
-		Room[][] temp = new Room[w][h];
-		for (int i = 0; i < w; ++i) {
-			for (int j = 0; j < h; ++j) {
+		Room[][] temp = new Room[w+2][h+2];
+		for (int i = 0; i < w+2; ++i) {
+			for (int j = 0; j < h+2; ++j) {
 				ArrayList<String> arr = null;
 				try {
-					arr = R.getPossibleRooms(cells[i][j].hasLeft, cells[i][j].hasRight, cells[i][j].hasUp,
-							cells[i][j].hasDown);
+					if(i > 0 && i < w+1 && j > 0 && j < h+1) {
+						arr = R.getPossibleRooms(cells[i-1][j-1].hasLeft, cells[i-1][j-1].hasRight, 
+								cells[i-1][j-1].hasUp, cells[i-1][j-1].hasDown);
+						int rand = (int) (Math.random() * arr.size());
+						temp[i][j] = new Room(arr.get(rand));
+					} else {
+						if((i == 0 || i == w+1) && (j == 0 || j == h+1)) {
+							temp[i][j] = new Room("sky_corner");
+						} else {
+							if(i == 0 || i == w+1) {
+								temp[i][j] = new Room("sky_vert");
+							} else {
+								temp[i][j] = new Room("sky_horiz");
+							}
+						}
+					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-
-				int rand = (int) (Math.random() * arr.size());
-
-				temp[i][j] = new Room(arr.get(rand));
-
 			}
 
 		}
