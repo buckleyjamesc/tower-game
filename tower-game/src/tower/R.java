@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
@@ -17,11 +20,17 @@ public class R {
 	private static Map<String, ArrayList<Line2D.Double>> collisionMap = new HashMap<String, ArrayList<Line2D.Double>>();
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
 	public static ArrayList<Image> walking = new ArrayList<Image>();
+	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();;
 	public static void init() throws IOException {
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
-			Image image = ImageIO.read(new File(fileName));
+			BufferedImage image = ImageIO.read(new File(fileName));
 			walking.add(image);
+			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+			tx.translate(-image.getWidth(null), 0);
+			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+			BufferedImage imageLeft = op.filter(image, null);
+			walkingLeft.add(imageLeft);
 		}
 	}
  	public static Image getImage(String fileName) throws FileNotFoundException, IOException {

@@ -32,7 +32,7 @@ public class AnimationHandler {
 		hit = new ArrayList<Image>();
 		jumping = new ArrayList<Image>();
 		running = new ArrayList<Image>();
-		walkingLeft = new ArrayList<Image>();
+		walkingLeft = R.walkingLeft;
 		
 	}
 	
@@ -47,7 +47,7 @@ public class AnimationHandler {
 					g.drawImage(walking.get(place % walking.size()), 390, 280-50, io);
 				}
 				else{
-					g.drawImage(walkingLeft.get(place % walkingLeft.size()), 390, 280, io);
+					g.drawImage(walkingLeft.get(place % walkingLeft.size()), 390, 280-50, io);
 				}
 			break;
 			case RUNNING:
@@ -57,10 +57,22 @@ public class AnimationHandler {
 				//g.drawImage(hit.get(place % hit.size()),390 ,280 , io);
 			break;
 			case JUMPING:
-				//g.drawImage(jumping.get(place % jumping.size()), 390, 280, io);
+				if(p.dx >= 0){
+					g.drawImage(walking.get(3), 390, 280-50, io);
+				}
+				else{
+
+					g.drawImage(walkingLeft.get(3), 390, 280-50, io);
+				}
 			break;
 		case STILL:
-			g.drawImage(walking.get(0), 390, 280-50, io);
+			if(p.dx >= 0){
+				g.drawImage(walking.get(0), 390, 280-50, io);
+			}
+			else{
+
+				g.drawImage(walkingLeft.get(0), 390, 280-50, io);
+			}
 		}
 	}
 	//no posts or pres
