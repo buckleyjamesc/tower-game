@@ -42,18 +42,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	public void buildWorld() throws FileNotFoundException {
 		// Does not work yet, not enough rooms
 		rooms = WorldBuilder.buildWorld(width, height);
-//		rooms = new Room[5][5];
-//		for(int i = 0; i < rooms.length; i++){
-//			for(int j = 0; j < rooms[i].length; j++){
-//				rooms[i][j] = new Room(R.getPossibleRooms(false,false,false,false).get(0));
-//			}
-//		}
-//		for(int i = 1; i < rooms.length-1; i++){
-//			for(int j = 1; j < rooms[i].length-1; j++){
-//				rooms[i][j] = new Room(R.getPossibleRooms(true, true, true, true).get(0));
-//			}
-//		}
-//		rooms[2][2] = new Room(R.getPossibleRooms(true, true, false, false).get(0));
 	}
 	
 	private void update() {
@@ -130,7 +118,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 				g.drawImage(rooms[i][j].getImage(), (int)(400 + S_WIDTH*i - p.x), (int)(300 + S_HEIGHT*j - p.y), S_WIDTH, S_HEIGHT,this);
 			}
 		}
-		g.drawRect(390, 280, 30, 70);
+		//g.drawRect(390, 280, 30, 70);
 		g.setColor(Color.GREEN);
 		if(p.colliding) g.setColor(Color.RED);
 		g.fillRect(0, 0, 10, 10);

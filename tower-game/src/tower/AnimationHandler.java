@@ -13,7 +13,7 @@ public class AnimationHandler {
 	ArrayList<Image> running;
 	ArrayList<Image> walkingLeft;
 	//delay between cycles
-	static final double DELAY = 200;
+	static final double DELAY = 400*0.75;
 	//will eventually get above Integer.MAX_VALUE
 	//used to iterate through images
 	int place;
@@ -78,7 +78,7 @@ public class AnimationHandler {
 	//no posts or pres
 	public void update(){
 		currentTime = System.currentTimeMillis();	
-		if(currentTime - lastChangeTime >= DELAY){
+		if(currentTime - lastChangeTime >= Math.abs(DELAY/p.dx)){
 			place++;
 			lastChangeTime = System.currentTimeMillis();
 		}
