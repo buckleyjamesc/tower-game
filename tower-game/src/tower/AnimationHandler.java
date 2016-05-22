@@ -13,7 +13,7 @@ public class AnimationHandler {
 	ArrayList<Image> running;
 	ArrayList<Image> walkingLeft;
 	//delay between cycles
-	static final double DELAY = 500;
+	static final double DELAY = 200;
 	//will eventually get above Integer.MAX_VALUE
 	//used to iterate through images
 	int place;
@@ -28,11 +28,12 @@ public class AnimationHandler {
 		lastChangeTime = Double.MIN_VALUE;
 		currentTime = System.currentTimeMillis();
 		//TODO Initialize images
-		walking = new ArrayList<Image>();
+		walking = R.walking;
 		hit = new ArrayList<Image>();
 		jumping = new ArrayList<Image>();
 		running = new ArrayList<Image>();
 		walkingLeft = new ArrayList<Image>();
+		
 	}
 	
 	/**
@@ -40,27 +41,27 @@ public class AnimationHandler {
 	 * Precondition: arrays of images are initialized w/ size > 0
 	 */
 	public void draw(Graphics g, ImageObserver io){
-	/*	switch (p.getState()){
+		switch (p.getState()){
 			case WALKING:
 				if(p.dx >= 0){
-					g.drawImage(walking.get(place % walking.size()), 390, 280, io);
+					g.drawImage(walking.get(place % walking.size()), 390, 280-50, io);
 				}
 				else{
 					g.drawImage(walkingLeft.get(place % walkingLeft.size()), 390, 280, io);
 				}
 			break;
 			case RUNNING:
-				g.drawImage(running.get(place % running.size()), 390, 280, io);
+				//g.drawImage(running.get(place % running.size()), 390, 280, io);
 			break;
 			case HIT:
-				g.drawImage(hit.get(place % hit.size()),390 ,280 , io);
+				//g.drawImage(hit.get(place % hit.size()),390 ,280 , io);
 			break;
 			case JUMPING:
-				g.drawImage(jumping.get(place % jumping.size()), 390, 280, io);
+				//g.drawImage(jumping.get(place % jumping.size()), 390, 280, io);
 			break;
 		case STILL:
-			break;
-		}*/
+			g.drawImage(walking.get(0), 390, 280-50, io);
+		}
 	}
 	//no posts or pres
 	public void update(){

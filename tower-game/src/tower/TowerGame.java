@@ -13,6 +13,7 @@ public class TowerGame {
         return frame;
 	}
 	public static void main(String[] args) throws IOException {
+		R.init();
 		JFrame frame = buildFrame();
 		GamePanel gp = new GamePanel(frame);
 		gp.addMouseMotionListener(gp);

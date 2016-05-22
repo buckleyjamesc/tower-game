@@ -26,6 +26,7 @@ public class Player {
 	 * @param state to change to
 	 */
 	public void setState(State state){
+		if (this.state == state) return;
 		this.state = state;
 		//makes new animation start at zero, avoids OutOfBounds
 		this.aHandler.resetPlace();
@@ -35,11 +36,13 @@ public class Player {
 	}
 	public void update(){
 		aHandler.update();
-		if(dx ==0 && dy ==0){
+		if(dx>-.05 && dx<.05 && dy>-.05 && dy<.05){
 			setState(State.STILL);
 		}
 		else if(!colliding){
 			this.setState(State.JUMPING);
+		} else {
+			this.setState(State.WALKING);
 		}
 	}
 	public AnimationHandler getAHandler(){

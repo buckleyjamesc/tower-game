@@ -16,7 +16,15 @@ public class R {
 	private static Map<String, Image> imageMap = new HashMap<String, Image>();
 	private static Map<String, ArrayList<Line2D.Double>> collisionMap = new HashMap<String, ArrayList<Line2D.Double>>();
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
-	public static Image getImage(String fileName) throws FileNotFoundException, IOException {
+	public static ArrayList<Image> walking = new ArrayList<Image>();
+	public static void init() throws IOException {
+		for(int i = 0; i < 4; ++i) {
+			String fileName = "src/resources/" + "player_walking_" + i + ".png";
+			Image image = ImageIO.read(new File(fileName));
+			walking.add(image);
+		}
+	}
+ 	public static Image getImage(String fileName) throws FileNotFoundException, IOException {
 		fileName = "src/resources/" + fileName + ".png";
 		if(!imageMap.containsKey(fileName)) {
 			Image image = ImageIO.read(new File(fileName));
