@@ -85,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		p.colliding = false;
 		double vx = p.dx;
 		double vy = p.dy;
+		
 		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 		collisions.add(new Line2D.Double(0,0,0,0));
 		while (!collisions.isEmpty()) {
@@ -116,6 +117,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		p.dy = vy;
 		p.x += p.dx;
 		p.y += p.dy;
+		p.update();
 	}
 	
 	@Override
@@ -128,10 +130,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 				g.drawImage(rooms[i][j].getImage(), (int)(400 + S_WIDTH*i - p.x), (int)(300 + S_HEIGHT*j - p.y), S_WIDTH, S_HEIGHT,this);
 			}
 		}
-		g.drawRect(390, 280, 20, 20);
+		g.drawRect(390, 280, 30, 70);
 		g.setColor(Color.GREEN);
 		if(p.colliding) g.setColor(Color.RED);
 		g.fillRect(0, 0, 10, 10);
+		p.getAHandler().draw(g, this);
 	}
 
 	@Override
