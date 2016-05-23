@@ -6,7 +6,7 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 
-public class Animation {
+public class Animation implements Drawable {
 	private List<Image> frames;		// The list of images to cycle through
 	private int frameNumber;		// The current image index to be displayed
 	private double screenX;			// The x location where the center of the image should be
@@ -16,6 +16,22 @@ public class Animation {
 	private double theta;			// The angle of rotation around the center to use when drawing the image
 	private double delayTime;		// The amount of time to delay between image changes
 	private double lastChangeTime;	// The time when the image was last changed
+	
+	protected Animation() {
+		this.frames = null;
+		this.frameNumber = 0;
+		this.screenX = 0.0;
+		this.screenY = 0.0;
+		this.centerX = 0.0;
+		this.centerY = 0.0;
+		this.theta = 0.0;
+		this.delayTime = 500.0;
+		this.lastChangeTime = System.currentTimeMillis();
+	}
+	
+	protected void setFrames(List<Image> frames) {
+		this.frames = frames;
+	}
 	
 	/**
 	 * @param frames The list of images which will be cycled through
@@ -37,7 +53,7 @@ public class Animation {
 	 * @effects will change frameNumber to reflect the correct value
 	 */
 	protected void update() {
-		if (delayTime <= 0.0) return;
+		if (delayTime <= 0.01) return;
 		while (lastChangeTime + delayTime < System.currentTimeMillis()) {
 			lastChangeTime += delayTime;
 			++frameNumber;
@@ -59,6 +75,7 @@ public class Animation {
 	 * @param g Graphics to draw the animation to
 	 * @effects will draw the correct image to the screen in the correct location
 	 */
+	@Override
 	public void draw(Graphics g) {
 		update();
 		Image image = frames.get(frameNumber);

@@ -1,17 +1,17 @@
 package tower;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Drawable{
 	public double x;
 	public double y;
 	public double dx;
 	public double dy;
 	public boolean colliding;
-	private State state;
-	AnimationHandler aHandler;
-	Animation animation;
+	private State state = null;
+	Drawable legs;
 
 	public Player(double x, double y) {
 		this.x = x;
@@ -19,13 +19,7 @@ public class Player {
 		dx = 0;
 		dy = 0;
 		colliding = false;
-		state = State.WALKING;
-		aHandler = new AnimationHandler(this);
-		animation = new Animation(R.walking);
-		animation.setLocation(400, 300);
-		animation.setCenter(15,70);
-		animation.setDelayTime(50);
-		animation.setRotation(Math.PI/1.0);
+		setState(State.WALKING);
 	}
 	
 	/**
@@ -34,28 +28,22 @@ public class Player {
 	public void setState(State state){
 		if (this.state == state) return;
 		this.state = state;
-		//makes new animation start at zero, avoids OutOfBounds
-		this.aHandler.resetPlace();
+		if (state == State.WALKING) legs = new WalkingAnimation(this);
+		if (state == State.JUMPING) legs = new JumpingImage(this);
 	}
 	public State getState(){
 		return state;
 	}
 	public void update(){
-		aHandler.update();
-		if(dx>-.05 && dx<.05 && dy>-.05 && dy<.05){
-			
-			setState(State.STILL);
-		}
-		else if(!colliding){
+		if(!colliding){
 			this.setState(State.JUMPING);
 		} else {
 			this.setState(State.WALKING);
 		}
 	}
-	public AnimationHandler getAHandler(){
-		return aHandler;
-	}
-	public Animation getAnimation(){
-		return animation;
+
+	@Override
+	public void draw(Graphics g) {
+		legs.draw(g);
 	}
 }

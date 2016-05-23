@@ -124,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		if(p.colliding) g.setColor(Color.RED);
 		g.fillRect(0, 0, 10, 10);
 		//p.getAHandler().draw(g, this);
-		p.getAnimation().draw(g);
+		p.draw(g);
 	}
 
 	@Override
