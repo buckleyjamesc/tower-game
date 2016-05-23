@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Fists extends Weapon{
-	final static double ARMLENGTH = 30.0;
 	final static double ARMGAPINRADIANS = .1;
 	@Override
 	public void update() {

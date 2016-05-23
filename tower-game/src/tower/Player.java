@@ -21,7 +21,7 @@ public class Player implements Drawable{
 		dy = 0;
 		colliding = false;
 		setState(State.WALKING);
-		weaponEquiped = new Fists();
+		weaponEquiped = new Gun();
 	}
 	
 	/**
@@ -44,6 +44,7 @@ public class Player implements Drawable{
 		}
 		//should be negative but... works when it is not negative !? check this
 		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - 260, MouseMotionHandler.x - 400)));
+		weaponEquiped.update();
 
 	}
 

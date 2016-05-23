@@ -22,11 +22,13 @@ public class R {
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
 	public static ArrayList<Image> walking = new ArrayList<Image>();
 	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();
+	public static Image gun;
 	public static AffineTransform identity;
 	public static GamePanel gp;
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();
+		gun = ImageIO.read(new File("src/resources/" + "gun" + ".png"));
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));
