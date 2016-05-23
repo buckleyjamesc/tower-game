@@ -12,6 +12,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 import javax.imageio.ImageIO;
 
@@ -21,7 +22,11 @@ public class R {
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
 	public static ArrayList<Image> walking = new ArrayList<Image>();
 	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();
+	public static AffineTransform identity;
+	public static GamePanel gp;
+	
 	public static void init() throws IOException {
+		identity = new AffineTransform();
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));

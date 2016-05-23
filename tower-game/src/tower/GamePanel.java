@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	Room[][] rooms;
 	
 	public GamePanel(JFrame frame) {
+		R.gp = this;
 		this.frame = frame;
 		rooms = new Room[0][0];
 		p = new Player(1000,1100);
@@ -122,7 +123,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		g.setColor(Color.GREEN);
 		if(p.colliding) g.setColor(Color.RED);
 		g.fillRect(0, 0, 10, 10);
-		p.getAHandler().draw(g, this);
+		//p.getAHandler().draw(g, this);
+		p.getAnimation().draw(g);
 	}
 
 	@Override

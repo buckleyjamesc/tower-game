@@ -11,6 +11,7 @@ public class Player {
 	public boolean colliding;
 	private State state;
 	AnimationHandler aHandler;
+	Animation animation;
 
 	public Player(double x, double y) {
 		this.x = x;
@@ -20,6 +21,11 @@ public class Player {
 		colliding = false;
 		state = State.WALKING;
 		aHandler = new AnimationHandler(this);
+		animation = new Animation(R.walking);
+		animation.setLocation(400, 300);
+		animation.setCenter(15,70);
+		animation.setDelayTime(50);
+		animation.setRotation(Math.PI/1.0);
 	}
 	
 	/**
@@ -37,6 +43,7 @@ public class Player {
 	public void update(){
 		aHandler.update();
 		if(dx>-.05 && dx<.05 && dy>-.05 && dy<.05){
+			
 			setState(State.STILL);
 		}
 		else if(!colliding){
@@ -47,5 +54,8 @@ public class Player {
 	}
 	public AnimationHandler getAHandler(){
 		return aHandler;
+	}
+	public Animation getAnimation(){
+		return animation;
 	}
 }
