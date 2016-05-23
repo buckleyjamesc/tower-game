@@ -20,13 +20,11 @@ public class Animation implements Drawable {
 	protected Animation() {
 		this.frames = null;
 		this.frameNumber = 0;
-		this.screenX = 0.0;
-		this.screenY = 0.0;
-		this.centerX = 0.0;
-		this.centerY = 0.0;
-		this.theta = 0.0;
-		this.delayTime = 500.0;
 		this.lastChangeTime = System.currentTimeMillis();
+		setLocation(0.0,0.0);
+		setCenter(0.0,0.0);
+		setRotation(0.0);
+		setDelayTime(500.0);
 	}
 	
 	protected void setFrames(List<Image> frames) {

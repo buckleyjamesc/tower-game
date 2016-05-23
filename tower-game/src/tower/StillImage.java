@@ -19,12 +19,10 @@ public class StillImage implements Drawable {
 	 * @effects creates a new animation object, initializing all variables.
 	 */
 	public StillImage(Image image) {
-		this.image = image;
-		this.screenX = 0.0;
-		this.screenY = 0.0;
-		this.centerX = 0.0;
-		this.centerY = 0.0;
-		this.theta = 0.0;
+		setLocation(0.0,0.0);
+		setCenter(0.0,0.0);
+		setRotation(0.0);
+		setImage(image);
 	}
 	
 	
@@ -63,5 +61,9 @@ public class StillImage implements Drawable {
 	
 	public void setRotation(double theta) {
 		this.theta = theta;
+	}
+	
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }
