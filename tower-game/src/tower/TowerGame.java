@@ -1,6 +1,7 @@
 package tower;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -24,6 +25,10 @@ public class TowerGame {
         frame.add(gp);
         Thread t = new Thread(gp);
         gp.buildWorld();
+        Point location = frame.getLocation();
+		frame.setLocation(new Point(0, 0));
+		frame.setLocation(location);
+		frame.pack();
         t.start();
 	}
 }
