@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	int width, height;
 	boolean keyUp, keyDown, keyLeft, keyRight;
 	Room[][] rooms;
+
 	
 	public GamePanel(JFrame frame) {
 		R.gp = this;
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		keyDown = false;
 		width = 3;
 		height = 15;
+		addMouseMotionListener(new MouseMotionHandler());
 	}
 	
 	public void buildWorld() throws FileNotFoundException {

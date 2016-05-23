@@ -12,6 +12,7 @@ public class Player implements Drawable{
 	public boolean colliding;
 	private State state = null;
 	Drawable legs;
+	Weapon weaponEquiped;
 
 	public Player(double x, double y) {
 		this.x = x;
@@ -20,6 +21,7 @@ public class Player implements Drawable{
 		dy = 0;
 		colliding = false;
 		setState(State.WALKING);
+		weaponEquiped = new Fists();
 	}
 	
 	/**
@@ -40,10 +42,15 @@ public class Player implements Drawable{
 		} else {
 			this.setState(State.WALKING);
 		}
+		//should be negative but... works when it is not negative !? check this
+		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - 260, MouseMotionHandler.x - 400)));
+
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		legs.draw(g);
+		weaponEquiped.draw(g);
+
 	}
 }
