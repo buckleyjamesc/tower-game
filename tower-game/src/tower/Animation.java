@@ -99,6 +99,8 @@ public class Animation implements Drawable {
 	}
 	
 	public void setDelayTime(double delayTime) {
+		double partial = (double)System.currentTimeMillis() - lastChangeTime;
+		lastChangeTime = lastChangeTime + (partial/this.delayTime)*(this.delayTime - delayTime);
 		this.delayTime = delayTime;
 	}
 }
