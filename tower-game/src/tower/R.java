@@ -20,7 +20,7 @@ public class R {
 	private static Map<String, ArrayList<Line2D.Double>> collisionMap = new HashMap<String, ArrayList<Line2D.Double>>();
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
 	public static ArrayList<Image> walking = new ArrayList<Image>();
-	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();;
+	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();
 	public static void init() throws IOException {
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
