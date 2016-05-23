@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.awt.geom.AffineTransform;
@@ -21,7 +22,7 @@ public class R {
 	private static Map<String, ArrayList<Line2D.Double>> collisionMap = new HashMap<String, ArrayList<Line2D.Double>>();
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
 	public static ArrayList<Image> walking = new ArrayList<Image>();
-	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();
+	public static List<Image> jumping = new ArrayList<Image>();;
 	public static BufferedImage gun;
 	public static AffineTransform identity;
 	public static GamePanel gp;
@@ -33,11 +34,11 @@ public class R {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));
 			walking.add(image);
-			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-			tx.translate(-image.getWidth(null), 0);
-			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-			BufferedImage imageLeft = op.filter(image, null);
-			walkingLeft.add(imageLeft);
+		}
+		for(int i = 0; i < 5; ++i) {
+			String fileName = "src/resources/" + "player_jumping_" + i + ".png";
+			BufferedImage image = ImageIO.read(new File(fileName));
+			jumping.add(image);
 		}
 	}
 	

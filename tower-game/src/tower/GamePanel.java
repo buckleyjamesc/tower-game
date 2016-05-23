@@ -134,8 +134,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		// TODO Auto-generated method stub
 		while (true) {
 			try {
-				update();
 				frame.repaint();
+				update();
+				//frame.repaint();
 				Thread.sleep(17);
 			} catch (Exception e) {
 				e.printStackTrace();

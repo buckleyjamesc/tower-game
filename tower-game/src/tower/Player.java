@@ -31,7 +31,7 @@ public class Player implements Drawable{
 		if (this.state == state) return;
 		this.state = state;
 		if (state == State.WALKING) legs = new WalkingAnimation(this);
-		if (state == State.JUMPING) legs = new JumpingImage(this);
+		if (state == State.JUMPING) legs = new JumpingAnimation(this);
 	}
 	public State getState(){
 		return state;
