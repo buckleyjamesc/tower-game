@@ -37,11 +37,17 @@ public class StillImage implements Drawable {
 	}
 	
 	/**
+	 * @effects will change frameNumber to reflect the correct value
+	 */
+	protected void update() {}
+	
+	/**
 	 * @param g Graphics to draw the animation to
 	 * @effects will draw the correct image to the screen in the correct location
 	 */
 	@Override
 	public void draw(Graphics g) {
+		update();
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform trans = new AffineTransform();
 		trans.setTransform(R.identity);

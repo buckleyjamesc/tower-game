@@ -22,13 +22,13 @@ public class R {
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
 	public static ArrayList<Image> walking = new ArrayList<Image>();
 	public static ArrayList<Image> walkingLeft = new ArrayList<Image>();
-	public static Image gun;
+	public static BufferedImage gun;
 	public static AffineTransform identity;
 	public static GamePanel gp;
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();
-		gun = ImageIO.read(new File("src/resources/" + "gun" + ".png"));
+		gun = ImageIO.read(new File("src/resources/" + "gun2" + ".png"));
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));
@@ -39,6 +39,14 @@ public class R {
 			BufferedImage imageLeft = op.filter(image, null);
 			walkingLeft.add(imageLeft);
 		}
+	}
+	
+	public static Image flip(BufferedImage image) {
+		AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+		tx.translate(-image.getWidth(null), 0);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+		BufferedImage imageLeft = op.filter(image, null);
+		return imageLeft;
 	}
  	public static Image getImage(String fileName) throws FileNotFoundException, IOException {
 		fileName = "src/resources/" + fileName + ".png";
