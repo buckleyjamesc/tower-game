@@ -8,4 +8,7 @@ public abstract class Weapon implements Drawable{
 	public void setAngle(double angle){
 		this.angle = angle;
 	}
+	public double getAngle() {
+		return angle;
+	}
 }

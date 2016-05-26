@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener {
+public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener{
 	public final int WIDTH = 160;
 	public final int HEIGHT = 120;
 	public final int S = 5;
@@ -109,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		p.x += p.dx;
 		p.y += p.dy;
 		p.update();
+		Projectile.updateList();
 	}
 	
 	@Override
@@ -127,6 +128,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		g.fillRect(0, 0, 10, 10);
 		//p.getAHandler().draw(g, this);
 		p.draw(g);
+		Projectile.drawList(g);
 	}
 
 	@Override
@@ -182,8 +184,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		p.onClick();
 	}
 
 	@Override
@@ -199,6 +200,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 		if(e.getKeyCode() == KeyEvent.VK_D){
 			keyRight = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_1){
+			p.setWeaponEquiped(new Fists());
+		}
+		if(e.getKeyCode() == KeyEvent.VK_2){
+			p.setWeaponEquiped(new Gun());
 		}
 	}
 

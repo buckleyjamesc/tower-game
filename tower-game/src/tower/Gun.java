@@ -17,8 +17,6 @@ public class Gun extends Weapon{
 	@Override
 	public void draw(Graphics g) {
 		si.draw(g);
-		//g.setColor(Color.BLACK);
-		//g.drawLine(400, 260, (int)(Math.cos(angle) * ARMLENGTH)+ 400, (int)(Math.sin(angle) * ARMLENGTH) + 260);
 	}
 
 	@Override
@@ -34,7 +32,6 @@ public class Gun extends Weapon{
 	
 	@Override
 	public void onClick() {
-		// TODO Auto-generated method stub
-		
+		Projectile.projectiles.add(new Bullet(400 + Math.cos(angle) * 15, 260 + Math.sin(angle) * 15, this));
 	}
 }

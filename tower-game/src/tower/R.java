@@ -24,12 +24,16 @@ public class R {
 	public static ArrayList<Image> walking = new ArrayList<Image>();
 	public static List<Image> jumping = new ArrayList<Image>();;
 	public static BufferedImage gun;
+	public static BufferedImage bullet;
+	public static BufferedImage fists;
 	public static AffineTransform identity;
 	public static GamePanel gp;
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();
 		gun = ImageIO.read(new File("src/resources/" + "gun2" + ".png"));
+		fists = ImageIO.read(new File("src/resources/" + "fists" + ".png"));
+		bullet = ImageIO.read(new File("src/resources/" + "bullet" + ".png"));
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));

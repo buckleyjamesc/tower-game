@@ -2,12 +2,27 @@ package tower;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 public class Fists extends Weapon{
 	final static double ARMGAPINRADIANS = .1;
+	Image fists;
+	StillImage si;
+	public Fists(){
+		fists = R.fists;
+		si = new StillImage(fists);
+		si.setLocation(400.0, 270.0);
+		si.setCenter(50,45);	
+	}
 	@Override
 	public void update() {
-		
+		if(Math.cos(angle) < 0.0) {
+			si.setImage(R.flip(R.fists));
+			si.setRotation(angle+Math.PI);
+		} else {
+			si.setImage(R.fists);
+			si.setRotation(angle);
+		}
 	}
 
 	@Override
@@ -17,10 +32,6 @@ public class Fists extends Weapon{
 
 	@Override
 	public void draw(Graphics g) {
-		System.out.println(angle);
-		g.setColor(Color.BLACK);
-		g.drawLine(400, 260, (int)(Math.cos(angle) * ARMLENGTH)+ 400, (int)(Math.sin(angle) * ARMLENGTH) + 260);
-		g.drawLine(400, 260, (int)(Math.cos(angle + .1) * ARMLENGTH)+ 400, (int)(Math.sin(angle + .1) * ARMLENGTH) + 260);
-
+		si.draw(g);
 	}
 }

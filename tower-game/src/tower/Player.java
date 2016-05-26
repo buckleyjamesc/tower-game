@@ -13,7 +13,7 @@ public class Player implements Drawable{
 	private State state = null;
 	Drawable legs;
 	Weapon weaponEquiped;
-
+	
 	public Player(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -21,7 +21,7 @@ public class Player implements Drawable{
 		dy = 0;
 		colliding = false;
 		setState(State.WALKING);
-		weaponEquiped = new Gun();
+		weaponEquiped = new Fists();
 	}
 	
 	/**
@@ -53,5 +53,12 @@ public class Player implements Drawable{
 		legs.draw(g);
 		weaponEquiped.draw(g);
 
+	}
+	public void onClick(){
+		weaponEquiped.onClick();
+	}
+
+	public void setWeaponEquiped(Weapon weaponEquiped) {
+		this.weaponEquiped = weaponEquiped;
 	}
 }
