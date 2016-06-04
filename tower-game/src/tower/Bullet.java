@@ -21,7 +21,7 @@ public class Bullet extends Projectile{
 		si.setLocation(x-R.gp.p.x+400, y-R.gp.p.y+300);
 	}
 	
-	public void interactEffect(Entity e) {
-		//if(e instanceof Player) R.removeEntity(this);;
+	public void interactWith(Entity e) {
+		if(e instanceof Player) R.removeEntity(this);;
 	}
 }
