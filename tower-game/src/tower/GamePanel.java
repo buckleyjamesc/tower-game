@@ -114,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 						e.x-e.hitBoxWidth/2.0  < o.x+o.hitBoxWidth /2.0 &&
 						e.y+e.hitBoxHeight/2.0 > o.y-o.hitBoxHeight/2.0 &&
 						e.y-e.hitBoxHeight/2.0 < o.y+o.hitBoxHeight/2.0		) {
-					if(e != o) e.interact(o);
+					if(e != o) e.interactWith(o);
 				}
 			}
 		}

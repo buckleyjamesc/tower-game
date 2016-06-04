@@ -57,4 +57,8 @@ public class Player extends Entity {
 	public void setWeaponEquiped(Weapon weaponEquiped) {
 		this.weaponEquiped = weaponEquiped;
 	}
+	
+	public void interactEffect(Entity e) {
+		if(e instanceof Bullet) System.out.println("OW!!!");
+	}
 }

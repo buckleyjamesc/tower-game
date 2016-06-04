@@ -12,13 +12,13 @@ public class Projectile extends Entity {
 	//public static ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
 	public Projectile(double x, double y, Weapon parent) {
-		super(5,5);
+		super(10,10);
 		angle = parent.getAngle();
 		this.x = x;
 		this.y = y;
 		this.parent = parent;
-		dx = Math.cos(angle) * 10 + R.gp.p.dx;
-		dy = Math.sin(angle) * 10 + R.gp.p.dy;
+		dx = Math.cos(angle) * 10.0 + R.gp.p.dx;
+		dy = Math.sin(angle) * 10.0 + R.gp.p.dy;
 		isFlying = true;
 		
 	}

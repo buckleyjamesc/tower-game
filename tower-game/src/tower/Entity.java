@@ -79,8 +79,12 @@ public class Entity implements Drawable {
 	
 	@Override
 	public void draw(Graphics g) {}
-
-	public void interact(Entity o) {
+	
+	public void interactEffect(Entity o) {
 		System.out.println("No interaction defined between " + this.getClass() + " and " + o.getClass());
+	}
+
+	public void interactWith(Entity o) {
+		o.interactEffect(this);
 	}
 }
