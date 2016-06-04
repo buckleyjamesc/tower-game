@@ -11,7 +11,7 @@ public class WalkingAnimation extends Animation {
 	public WalkingAnimation(Player p) {
 		super(R.walking);
 		setLocation(400, 300);
-		setCenter(15,70);
+		setCenter(15,35);
 		setDelayTime(50);
 		this.p = p;
 	}

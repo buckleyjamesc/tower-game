@@ -10,6 +10,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,17 +24,20 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	public final int S_WIDTH = S*WIDTH;
 	public final int S_HEIGHT = S*HEIGHT;
 	private JFrame frame;
-	Player p;
-	int width, height;
-	boolean keyUp, keyDown, keyLeft, keyRight;
-	Room[][] rooms;
+	public Player p;
+	public int width, height;
+	public boolean keyUp, keyDown, keyLeft, keyRight;
+	public Room[][] rooms;
+	public List<Entity> entities;
 
 	
 	public GamePanel(JFrame frame) {
 		R.gp = this;
 		this.frame = frame;
 		rooms = new Room[0][0];
+		entities = Collections.synchronizedList(new ArrayList<Entity>());
 		p = new Player(1000,1100);
+		entities.add(p);
 		keyLeft = false;
 		keyUp = false;
 		keyRight = false;
@@ -54,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		for(int i = room_i-1; i <= room_i+1; i++) {
 			for(int j = room_j-1; j <= room_j+1; j++) {
 				for (Line2D.Double c : rooms[i][j].getCollisions()) {
-					if(Line2D.linesIntersect(p.x, p.y, p.x+0.0, p.y+1.0, c.x1+(double)(S_WIDTH*i), c.y1 + (double)(S_HEIGHT*j), c.x2 + (double)(S_WIDTH*i), c.y2 + (double)(S_HEIGHT*j))) {
+					if(Line2D.linesIntersect(p.x, p.y+p.hitBoxHeight/2.0, p.x+0.0, p.y+p.hitBoxHeight/2.0+1.0, c.x1+(double)(S_WIDTH*i), c.y1 + (double)(S_HEIGHT*j), c.x2 + (double)(S_WIDTH*i), c.y2 + (double)(S_HEIGHT*j))) {
 						if(Line2D.relativeCCW(c.x1+(double)(S_WIDTH*i), c.y1 + (double)(S_HEIGHT*j), c.x2 + (double)(S_WIDTH*i), c.y2 + (double)(S_HEIGHT*j), p.x, p.y)>0) {
 							p.colliding = true;
 						}
@@ -63,20 +68,35 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			}
 		}
 		double speed = 5;
-		double f = 0.9;
+		p.f = 0.9;
 		if(p.colliding && keyUp) {
 			p.dy = -13;
 		}
 		if (keyLeft!=keyRight) {
-			f = 1.0;
+			p.f = 1.0;
 			if(keyLeft && p.dx > -speed) p.dx += -.75;
 			if(keyRight && p.dx < speed) p.dx += .75;
 		}
 		p.dy += .40;
 		p.colliding = false;
+		/*
 		double vx = p.dx;
 		double vy = p.dy;
-		
+		*/
+		for(Entity e : entities) {
+			ArrayList<Line2D.Double> collisions = e.getConflicts();
+			while(!R.isRemoved(e) && !collisions.isEmpty()) {
+				for(Line2D.Double c : collisions) {
+					e.onCollision(c);
+				}
+				collisions = e.getConflicts();
+			}
+			e.x += e.dx;
+			e.y += e.dy;
+			e.update();
+		}
+		R.removeEntities();
+		/*
 		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 		collisions.add(new Line2D.Double(0,0,0,0));
 		while (!collisions.isEmpty()) {
@@ -106,10 +126,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 		p.dx = vx;
 		p.dy = vy;
-		p.x += p.dx;
-		p.y += p.dy;
-		p.update();
-		Projectile.updateList();
+		*/
+		//Projectile.updateList();
 	}
 	
 	@Override
@@ -127,8 +145,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		if(p.colliding) g.setColor(Color.RED);
 		g.fillRect(0, 0, 10, 10);
 		//p.getAHandler().draw(g, this);
-		p.draw(g);
-		Projectile.drawList(g);
+		for(Entity e : entities) {
+			e.draw(g);
+		}
+		//Projectile.drawList(g);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class Gun extends Weapon{
 	public Gun(){
 		gun = R.gun;	
 		si = new StillImage(gun);
-		si.setLocation(400.0, 270.0);
+		si.setLocation(400.0, 305.0);
 		si.setCenter(50,45);
 	}
 	@Override
@@ -32,6 +32,6 @@ public class Gun extends Weapon{
 	
 	@Override
 	public void onClick() {
-		Projectile.projectiles.add(new Bullet(400 + Math.cos(angle) * 15, 260 + Math.sin(angle) * 15, this));
+		R.gp.entities.add(new Bullet(R.gp.p.x + Math.cos(angle) * 15, R.gp.p.y + Math.sin(angle) * 15, this));
 	}
 }

@@ -11,7 +11,7 @@ public class JumpingAnimation extends Animation {
 	public JumpingAnimation(Player p) {
 		super(R.jumping);
 		setLocation(400, 300);
-		setCenter(15,70);
+		setCenter(15,35);
 		setDelayTime(100);
 		this.p = p;
 	}

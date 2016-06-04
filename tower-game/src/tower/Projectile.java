@@ -1,20 +1,18 @@
 package tower;
 
 import java.awt.Graphics;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
-public abstract class Projectile implements Drawable {
+public class Projectile extends Entity {
 	protected boolean isFlying;
-	protected double x;
-	protected double y;
-	protected double dx;
-	protected double dy;
 	protected double angle;
 	protected StillImage si;
 	protected Weapon parent;
-	public static ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+	//public static ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
-	public Projectile(double x, double y, Weapon parent){
+	public Projectile(double x, double y, Weapon parent) {
+		super(5,5);
 		angle = parent.getAngle();
 		this.x = x;
 		this.y = y;
@@ -24,6 +22,13 @@ public abstract class Projectile implements Drawable {
 		isFlying = true;
 		
 	}
+
+	@Override
+	public void onCollision(Line2D.Double c) {
+		super.onCollision(c);
+		R.removeEntity(this);
+	}
+	/*
 	public abstract void update();
 	public static void drawList(Graphics g){
 		for(int i = 0; i < projectiles.size(); ++i){
@@ -38,5 +43,5 @@ public abstract class Projectile implements Drawable {
 	public boolean isColliding(){
 		//TODO MAKE THIS
 		return false;
-	}
+	}*/
 }

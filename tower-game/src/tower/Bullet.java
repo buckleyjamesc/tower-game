@@ -7,6 +7,7 @@ public class Bullet extends Projectile{
 	public Bullet(double x, double y, Weapon parent) {
 		super(x, y, parent);
 		si = new StillImage(R.bullet);
+		si.setCenter(5, 2);
 	}
 
 	@Override
@@ -17,9 +18,6 @@ public class Bullet extends Projectile{
 	@Override
 	public void update() {
 		si.setRotation(angle);
-		si.setLocation(x, y);
-		x+= dx;
-		y+= dy;
+		si.setLocation(x-R.gp.p.x+400, y-R.gp.p.y+300);
 	}
-
 }

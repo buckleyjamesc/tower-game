@@ -11,7 +11,7 @@ public class Fists extends Weapon{
 	public Fists(){
 		fists = R.fists;
 		si = new StillImage(fists);
-		si.setLocation(400.0, 270.0);
+		si.setLocation(400.0, 305.0);
 		si.setCenter(50,45);	
 	}
 	@Override

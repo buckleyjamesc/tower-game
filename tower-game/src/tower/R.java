@@ -6,9 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.AffineTransformOp;
@@ -28,6 +30,7 @@ public class R {
 	public static BufferedImage fists;
 	public static AffineTransform identity;
 	public static GamePanel gp;
+	public static Set<Entity> toRemove = new HashSet<Entity>();
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();
@@ -102,5 +105,19 @@ public class R {
 		}
 		System.out.println("" + code + " -> \"" + data.get(code).get(0) + "\"");
 		return data.get(code);
+	}
+
+	public static boolean isRemoved(Entity e) {
+		return toRemove.contains(e);
+	}
+	public static void removeEntity(Entity e) {
+		toRemove.add(e);
+	}
+
+	public static void removeEntities() {
+		for(Entity e : toRemove) {
+			gp.entities.remove(e);
+		}
+		toRemove.clear();
 	}
 }
