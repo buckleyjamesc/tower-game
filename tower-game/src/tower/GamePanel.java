@@ -77,13 +77,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			if(keyLeft && p.dx > -speed) p.dx += -.75;
 			if(keyRight && p.dx < speed) p.dx += .75;
 		}
-		p.dy += .40;
-		p.colliding = false;
+		//p.dy += .40;
 		/*
 		double vx = p.dx;
 		double vy = p.dy;
 		*/
 		for(Entity e : entities) {
+			e.applyGravity();
+			e.colliding = false;
 			ArrayList<Line2D.Double> collisions = e.getConflicts();
 			while(!R.isRemoved(e) && !collisions.isEmpty()) {
 				for(Line2D.Double c : collisions) {
@@ -141,12 +142,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			}
 		}
 		//g.drawRect(390, 280, 30, 70);
-		g.setColor(Color.GREEN);
-		if(p.colliding) g.setColor(Color.RED);
-		g.fillRect(0, 0, 10, 10);
 		//p.getAHandler().draw(g, this);
 		for(Entity e : entities) {
 			e.draw(g);
+		}
+		for(Entity e : entities) {
+			g.setColor(Color.GREEN);
+			if(e.colliding) g.setColor(Color.RED);
+			e.drawHitBox(g);
 		}
 		//Projectile.drawList(g);
 	}

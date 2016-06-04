@@ -4,17 +4,10 @@ import java.awt.Graphics;
 import java.awt.geom.Line2D;
 
 public class Player extends Entity {
-	public boolean colliding;
 	private State state = null;
 	Drawable legs;
 	Weapon weaponEquiped;
-	
-	@Override
-	public void onCollision(Line2D.Double c) {
-		super.onCollision(c);
-		colliding = true;
-	}
-	
+
 	public Player(double x, double y) {
 		super(30, 70);
 		this.x = x;

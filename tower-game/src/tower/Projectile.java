@@ -17,12 +17,17 @@ public class Projectile extends Entity {
 		this.x = x;
 		this.y = y;
 		this.parent = parent;
-		dx = Math.cos(angle) * 10;
-		dy = Math.sin(angle) * 10;
+		dx = Math.cos(angle) * 10 + R.gp.p.dx;
+		dy = Math.sin(angle) * 10 + R.gp.p.dy;
 		isFlying = true;
 		
 	}
 
+	@Override
+	public void applyGravity() {
+		
+	}
+	
 	@Override
 	public void onCollision(Line2D.Double c) {
 		super.onCollision(c);

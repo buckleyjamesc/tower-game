@@ -10,12 +10,23 @@ public class Entity implements Drawable {
 	public double dx;
 	public double dy;
 	public double f;
+	public boolean colliding;
 	public double hitBoxWidth;
 	public double hitBoxHeight;
 	
 	public Entity(double w, double h) {
 		hitBoxWidth = w;
 		hitBoxHeight = h;
+		colliding = false;
+		x = 0;
+		y = 0;
+		dx = 0;
+		dy = 0;
+		f = 0.9;
+	}
+	
+	public void applyGravity() {
+		dy += .40;
 	}
 	
 	private void addIfConflict(ArrayList<Line2D.Double> collisions, Line2D.Double c) {
@@ -54,6 +65,7 @@ public class Entity implements Drawable {
 	}
 	
 	public void onCollision(Line2D.Double c) {
+		colliding = true;
 		double dist = 0*c.ptLineDist(x, y);
 		double comp = f*Math.sqrt(dx*dx + dy*dy)*Math.cos(Math.atan2(dy, dx) - Math.atan2(c.y2-c.y1, c.x2-c.x1));
 		double len = c.getP1().distance(c.getP2());
@@ -64,8 +76,10 @@ public class Entity implements Drawable {
 	}
 	public void update(){}
 	
-	@Override
-	public void draw(Graphics g) {
-		
+	public void drawHitBox(Graphics g) {
+		g.drawRect((int)(x-R.gp.p.x+400-hitBoxWidth/2.0), (int)(y-R.gp.p.y+300-hitBoxHeight/2.0), (int)hitBoxWidth, (int)hitBoxHeight);
 	}
+	
+	@Override
+	public void draw(Graphics g) {}
 }
