@@ -33,13 +33,11 @@ public class Entity implements Drawable {
 		if(Line2D.linesIntersect(x, y, x+dx, y+dy, c.x1, c.y1, c.x2, c.y2)) {
 			if(Line2D.relativeCCW(c.x1, c.y1, c.x2, c.y2, x, y)>0) {
 				collisions.add(c);
-				System.out.print("("+ c.x1 +","+ c.y1 +","+ c.x2 +","+ c.y2 +")");
 			}
 		}
 	}
 	
 	public ArrayList<Line2D.Double> getConflicts() {
-		System.out.print("C: ");
 		int room_i = (int) (x / R.gp.S_WIDTH);
 		int room_j = (int) (y / R.gp.S_HEIGHT);
 		double w = hitBoxWidth/2.0; double h = hitBoxHeight/2.0;
@@ -60,7 +58,6 @@ public class Entity implements Drawable {
 				}
 			}
 		}
-		System.out.print("\n");
 		return collisions;
 	}
 	
@@ -82,4 +79,8 @@ public class Entity implements Drawable {
 	
 	@Override
 	public void draw(Graphics g) {}
+
+	public void interact(Entity o) {
+		
+	}
 }

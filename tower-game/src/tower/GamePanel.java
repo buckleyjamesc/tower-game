@@ -94,9 +94,24 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			}
 			e.x += e.dx;
 			e.y += e.dy;
+		}
+		for(Entity e : entities) {
+			for(Entity o : entities) {
+				if(		e.x+e.hitBoxWidth/2.0  > o.x-o.hitBoxWidth /2.0 &&
+						e.x-e.hitBoxWidth/2.0  < o.x+o.hitBoxWidth /2.0 &&
+						e.y+e.hitBoxHeight/2.0 > o.y-o.hitBoxHeight/2.0 &&
+						e.y-e.hitBoxHeight/2.0 < o.y+o.hitBoxHeight/2.0		) {
+					e.interact(o);
+				}
+			}
+		}
+		for(Entity e : entities) {
 			e.update();
 		}
 		R.removeEntities();
+		
+
+		System.out.print("C: ");
 		/*
 		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 		collisions.add(new Line2D.Double(0,0,0,0));
