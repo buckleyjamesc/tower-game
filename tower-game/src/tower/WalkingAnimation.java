@@ -18,7 +18,11 @@ public class WalkingAnimation extends Animation {
 	
 	@Override
 	protected void update() {
-		setDelayTime(Math.abs(400*0.75/p.dx));
+		if(Math.abs(p.dx) > 0.001) {
+			setDelayTime(Math.abs(400*0.75/p.dx));
+		} else {
+			setDelayTime(99999);
+		}
 		super.update();
 	}
 	

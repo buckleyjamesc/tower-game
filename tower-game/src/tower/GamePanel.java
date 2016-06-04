@@ -56,6 +56,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		int room_i = (int) (p.x / S_WIDTH);
 		int room_j = (int) (p.y / S_HEIGHT);
 		p.colliding = false;
+		double dx = p.dx;
+		double dy = p.dy;
+		p.dx = 0;
+		p.dy = 1;
+		if(!p.getConflicts().isEmpty()) p.colliding = true;
+		p.dx = dx;
+		p.dy = dy;
+		/*
 		for(int i = room_i-1; i <= room_i+1; i++) {
 			for(int j = room_j-1; j <= room_j+1; j++) {
 				for (Line2D.Double c : rooms[i][j].getCollisions()) {
@@ -66,9 +74,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 					}
 				}
 			}
-		}
+		}*/
 		double speed = 5;
 		p.f = 0.9;
+		if(p.colliding) {
+			p.setState(State.WALKING);
+		} else {
+			p.setState(State.JUMPING);
+		}
 		if(p.colliding && keyUp) {
 			p.dy = -13;
 		}
@@ -101,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 						e.x-e.hitBoxWidth/2.0  < o.x+o.hitBoxWidth /2.0 &&
 						e.y+e.hitBoxHeight/2.0 > o.y-o.hitBoxHeight/2.0 &&
 						e.y-e.hitBoxHeight/2.0 < o.y+o.hitBoxHeight/2.0		) {
-					e.interact(o);
+					if(e != o) e.interact(o);
 				}
 			}
 		}
@@ -109,9 +122,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			e.update();
 		}
 		R.removeEntities();
-		
-
-		System.out.print("C: ");
 		/*
 		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 		collisions.add(new Line2D.Double(0,0,0,0));

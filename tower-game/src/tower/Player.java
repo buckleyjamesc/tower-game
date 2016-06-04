@@ -33,11 +33,11 @@ public class Player extends Entity {
 	}
 	@Override
 	public void update(){
-		if(!colliding){
-			this.setState(State.JUMPING);
-		} else {
-			this.setState(State.WALKING);
-		}
+		//if(!colliding){
+		//	this.setState(State.JUMPING);
+		//} else {
+		//	this.setState(State.WALKING);
+		//}
 		//should be negative but... works when it is not negative !? check this
 		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - 295, MouseMotionHandler.x - 400)));
 		weaponEquiped.update();
