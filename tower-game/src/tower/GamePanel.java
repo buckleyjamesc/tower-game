@@ -89,19 +89,24 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		int room_i = (int) (p.x / S_WIDTH);
-		int room_j = (int) (p.y / S_HEIGHT);
 		super.paintComponent(g);
+		int room_i;
+		int room_j;
+		synchronized(entities) {
+			room_i = (int) (p.x / S_WIDTH);
+			room_j = (int) (p.y / S_HEIGHT);
+		}
 		for(int i = (room_i-1>=0)?room_i-1:0; i <= room_i+1 && i < rooms.length; i++) {
 			for(int j = (room_j-1>=0)?room_j-1:0; j <= room_j+1 && j < rooms[i].length; j++) {
 				g.drawImage(rooms[i][j].getImage(), (int)(400 + S_WIDTH*i - p.x),
 							(int)(300 + S_HEIGHT*j - p.y), S_WIDTH, S_HEIGHT,this);
 			}
 		}
+		synchronized(entities) {
 		for(Entity e : entities) {
 			e.draw(g);
 			if(SHOW_HITBOXES) e.drawHitBox(g);
-		}
+		}}
 	}
 
 	@Override

@@ -58,8 +58,8 @@ public class Entity implements Drawable {
 		double w = hitBoxWidth/2.0; double h = hitBoxHeight/2.0;
 		double x1, x2, y1, y2, d, r;
 		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
-		for(int i = room_i-1; i <= room_i+1; i++) {
-			for(int j = room_j-1; j <= room_j+1; j++) {
+		for(int i = Math.max(room_i-1,0); i <= Math.min(room_i+1,R.gp.rooms.length-1); i++) {
+			for(int j = Math.max(room_j-1,0); j <= Math.min(room_j+1,R.gp.rooms[i].length-1); j++) {
 				for (Line2D.Double c : R.gp.rooms[i][j].getHardCollisions()) {
 					x1 = c.x1+(double)(R.gp.S_WIDTH*i);
 					x2 = c.x2+(double)(R.gp.S_WIDTH*i);

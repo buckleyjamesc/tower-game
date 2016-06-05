@@ -19,7 +19,13 @@ public class Projectile extends Entity {
 
 	@Override
 	public void applyGravity() {
-		
+		dy += .05;
+	}
+	
+	@Override
+	public void update() {
+		super.update();
+		angle = Math.atan2(dy,dx);
 	}
 	
 	@Override
