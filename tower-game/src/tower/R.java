@@ -174,9 +174,10 @@ public class R {
 		toRemove.add(e);
 	}
 	public static void removeEntities() {
+		synchronized(gp.entities) {
 		for(Entity e : toRemove) {
 			gp.entities.remove(e);
-		}
+		}}
 		toRemove.clear();
 	}
 }

@@ -47,12 +47,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	
 	private void update() {
 		// Update all entities
+		synchronized(entities) {
 		for(Entity e : entities) {
 			e.update();
-		}
+		}}
 		
 		// Loop over entities and figure out their movements
-		for(Entity e : entities) { synchronized(e) {
+		synchronized(entities) {
+		for(Entity e : entities) {
 			e.applyGravity();
 			e.colliding = false;
 			List<Line2D.Double> collisions = e.getConflicts();
@@ -69,6 +71,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}}
 		
 		// Loop over entities and determine if they are overlapping with other entities
+		synchronized(entities) {
 		for(Entity e : entities) {
 			for(Entity o : entities) {
 				if(		e.x+e.hitBoxWidth/2.0  > o.x-o.hitBoxWidth /2.0 &&
@@ -78,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 					if(e != o) e.interactWith(o);
 				}
 			}
-		}
+		}}
 		
 		// Actually remove the ones which were told to be removed
 		R.removeEntities();
@@ -117,17 +120,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		synchronized(p) {p.onClick();}
+		synchronized(entities) {p.onClick();}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		R.pressedKeys.add(e.getKeyCode());
 		if(e.getKeyCode() == KeyEvent.VK_1){
-			synchronized(p) {p.setWeaponEquiped(new Fists());}
+			synchronized(entities) {p.setWeaponEquiped(new Fists());}
 		}
 		if(e.getKeyCode() == KeyEvent.VK_2){
-			synchronized(p) {p.setWeaponEquiped(new Gun());}
+			synchronized(entities) {p.setWeaponEquiped(new Gun());}
 		}
 	}
 

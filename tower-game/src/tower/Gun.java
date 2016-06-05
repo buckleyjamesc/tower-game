@@ -30,6 +30,10 @@ public class Gun extends Weapon{
 	
 	@Override
 	public void onClick() {
-		R.gp.entities.add(new Bullet(R.gp.p.x + Math.cos(angle) * 15, R.gp.p.y + Math.sin(angle) * 15, this));
+		if(Math.cos(angle) < 0.0) {
+			R.gp.entities.add(new Bullet(R.gp.p.x - 10.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y + 5.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this));
+		} else {
+			R.gp.entities.add(new Bullet(R.gp.p.x + 10.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y - 5.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this));
+		}
 	}
 }
