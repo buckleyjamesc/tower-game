@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener {
+	public final boolean SHOW_HITBOXES = false;
 	public final int WIDTH = 160;
 	public final int HEIGHT = 120;
 	public final int S = 5;
@@ -51,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 		
 		// Loop over entities and figure out their movements
-		for(Entity e : entities) { synchronized(this) {
+		for(Entity e : entities) { synchronized(e) {
 			e.applyGravity();
 			e.colliding = false;
 			List<Line2D.Double> collisions = e.getConflicts();
@@ -96,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 		for(Entity e : entities) {
 			e.draw(g);
-			e.drawHitBox(g); // SHOULD WE ADD DEBUG MODE?
+			if(SHOW_HITBOXES) e.drawHitBox(g);
 		}
 	}
 
@@ -116,7 +117,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		p.onClick();
+		synchronized(p) {p.onClick();}
 	}
 
 	@Override
