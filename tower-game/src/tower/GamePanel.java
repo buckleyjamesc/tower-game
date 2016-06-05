@@ -55,12 +55,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			e.applyGravity();
 			e.colliding = false;
 			List<Line2D.Double> collisions = e.getConflicts();
-			while(!R.isRemoved(e) && !collisions.isEmpty()) {
+			int count = 0; int max = 100;
+			while(count < max && !R.isRemoved(e) && !collisions.isEmpty()) {
 				for(Line2D.Double c : collisions) {
 					e.onCollision(c);
 				}
 				collisions = e.getConflicts();
+				count++;
 			}
+			if (count == max) {e.dx = 0; e.dy = 0;}
 			e.x += e.dx; e.y += e.dy;
 		}}
 		

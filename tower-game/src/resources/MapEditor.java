@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
 public class MapEditor {
 	static final int DOOR_W = 60;
 	static final int DOOR_H = 100;
-	static String fileName = "level2";
+	static String fileName = "template1111";
 	static int mx = 400;
 	static int my = 300;
 	static int tempx = 0;
