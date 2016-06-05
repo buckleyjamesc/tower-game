@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
-import java.util.List;
 
 public class StillImage implements Drawable {
 	private Image image;	// The image to draw

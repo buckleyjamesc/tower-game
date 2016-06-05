@@ -22,6 +22,11 @@ public class Bullet extends Projectile{
 	}
 	
 	public void interactWith(Entity e) {
-		if(e instanceof Player) R.removeEntity(this);;
+		// Just interact with Players for now.
+		if(e instanceof Player) {
+			R.removeEntity(this);
+		} else {
+			System.out.println("No interaction defined between " + this.getClass() + " and " + e.getClass());
+		}
 	}
 }

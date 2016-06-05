@@ -1,8 +1,6 @@
 package tower;
 
-import java.awt.Image;
 import java.awt.geom.AffineTransform;
-import java.util.List;
 
 public class WalkingAnimation extends Animation {
 

@@ -1,7 +1,6 @@
 package tower;
 
 import java.awt.Graphics;
-import java.awt.geom.Line2D;
 
 public class Player extends Entity {
 	private State state = null;
@@ -12,15 +11,13 @@ public class Player extends Entity {
 		super(30, 70);
 		this.x = x;
 		this.y = y;
-		dx = 0;
-		dy = 0;
-		colliding = false;
 		setState(State.WALKING);
 		weaponEquiped = new Fists();
 	}
 	
 	/**
 	 * @param state to change to
+	 * @effects change the state, updating leg image as needed.
 	 */
 	public void setState(State state){
 		if (this.state == state) return;
@@ -31,17 +28,36 @@ public class Player extends Entity {
 	public State getState(){
 		return state;
 	}
+	
 	@Override
 	public void update(){
-		//if(!colliding){
-		//	this.setState(State.JUMPING);
-		//} else {
-		//	this.setState(State.WALKING);
-		//}
+		
+		// Check if on ground, in free fall, or hitting wall
+		double store_dx = dx; double store_dy = dy; 
+		dx = 0; dy = 1;
+		if(!getConflicts().isEmpty()) {
+			setState(State.WALKING);
+		} else {
+			setState(State.JUMPING);
+		}
+		dx = store_dx; dy = store_dy;
+		
+		// Jumping code
+		if(getState() == State.WALKING && R.pressedKeys.contains(R.UP_KEY)) {
+			dy = -13;
+		}
+
+		// Left/right movement code
+		double speed = 5; f = 0.9;
+		if (R.pressedKeys.contains(R.LEFT_KEY)!=R.pressedKeys.contains(R.RIGHT_KEY)) {
+			f = 1.0;
+			if(R.pressedKeys.contains(R.LEFT_KEY) && dx > -speed) dx += -.75;
+			if(R.pressedKeys.contains(R.RIGHT_KEY) && dx < speed) dx += .75;
+		}
+		
 		//should be negative but... works when it is not negative !? check this
 		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - 295, MouseMotionHandler.x - 400)));
 		weaponEquiped.update();
-
 	}
 
 	@Override
@@ -59,6 +75,11 @@ public class Player extends Entity {
 	}
 	
 	public void interactWith(Entity e) {
-		if(e instanceof Bullet) System.out.println("OW!!!");
+		// Just interact with bullet for now.
+		if(e instanceof Bullet) {
+			System.out.println("OW!!!");
+		} else {
+			System.out.println("No interaction defined between " + this.getClass() + " and " + e.getClass());
+		}
 	}
 }

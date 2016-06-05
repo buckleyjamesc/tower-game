@@ -1,6 +1,7 @@
 package tower;
 
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,11 +16,13 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-
 import javax.imageio.ImageIO;
 
 public class R {
+	public static final Integer UP_KEY = KeyEvent.VK_W;
+	public static final Integer DOWN_KEY = KeyEvent.VK_S;
+	public static final Integer LEFT_KEY = KeyEvent.VK_A;
+	public static final Integer RIGHT_KEY = KeyEvent.VK_D;
 	private static Map<String, Image> imageMap = new HashMap<String, Image>();
 	private static Map<String, ArrayList<Line2D.Double>> collisionMap = new HashMap<String, ArrayList<Line2D.Double>>();
 	private static Map<Integer, ArrayList<String>> data = new HashMap<Integer, ArrayList<String>>();
@@ -31,6 +34,7 @@ public class R {
 	public static AffineTransform identity;
 	public static GamePanel gp;
 	public static Set<Entity> toRemove = new HashSet<Entity>();
+	public static Set<Integer> pressedKeys = new HashSet<Integer>();
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();
@@ -113,7 +117,6 @@ public class R {
 	public static void removeEntity(Entity e) {
 		toRemove.add(e);
 	}
-
 	public static void removeEntities() {
 		for(Entity e : toRemove) {
 			gp.entities.remove(e);

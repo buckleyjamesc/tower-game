@@ -1,9 +1,7 @@
 package tower;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.geom.AffineTransform;
 
 public class Gun extends Weapon{
 	Image gun;

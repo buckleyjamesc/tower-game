@@ -17,7 +17,6 @@ public class TowerGame {
 		R.init();
 		JFrame frame = buildFrame();
 		GamePanel gp = new GamePanel(frame);
-		gp.addMouseMotionListener(gp);
 		gp.addMouseListener(gp);
 		frame.addKeyListener(gp);
 		frame.getContentPane().setPreferredSize(new Dimension(800, 600));
