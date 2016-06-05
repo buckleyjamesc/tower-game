@@ -165,9 +165,9 @@ public class MapEditor {
 	}
 	public static void writeFile() {
 		String fileString = "";
-		for(Line2D current : walls) {
+		//for(Line2D current : walls) {
 			//fileString += "" + current.getX1() + "," + current.getY1() + "," + current.getX2() + "," + current.getY2() + "\n";
-		}
+		//}
 		for(Line2D current : collisions) {
 			fileString += "" + current.getX1() + "," + current.getY1() + "," + current.getX2() + "," + current.getY2() + "\n";
 		}

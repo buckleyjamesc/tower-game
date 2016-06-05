@@ -76,11 +76,13 @@ public class R {
 		}
 		return imageMap.get(fileName);
 	}
-	public static ArrayList<Line2D.Double> getCollisions(String fileName) throws FileNotFoundException {
-		String oldFileName = fileName;
+ 	public static ArrayList<Line2D.Double> getHardCollisions(String fileName) throws FileNotFoundException {
+ 		return makeWalls(fileName);
+ 	}
+	public static ArrayList<Line2D.Double> getSoftCollisions(String fileName) throws FileNotFoundException {
 		fileName = "src/resources/" + fileName + ".collisions";
 		if(!collisionMap.containsKey(fileName)) {
-			ArrayList<Line2D.Double> collisions = makeWalls(oldFileName);
+			ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 			Scanner scan = new Scanner(new File(fileName));
 			while(scan.hasNextLine()) {
 				String line = scan.nextLine();

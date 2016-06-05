@@ -23,9 +23,18 @@ public class Room {
 		}
 		return null;
 	}
-	public ArrayList<Line2D.Double> getCollisions() {
+	public ArrayList<Line2D.Double> getSoftCollisions() {
 		try {
-			return R.getCollisions(filename);
+			return R.getSoftCollisions(filename);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<Line2D.Double> getHardCollisions() {
+		try {
+			return R.getHardCollisions(filename);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

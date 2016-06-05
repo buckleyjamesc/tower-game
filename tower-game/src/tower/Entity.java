@@ -60,15 +60,28 @@ public class Entity implements Drawable {
 		ArrayList<Line2D.Double> collisions = new ArrayList<Line2D.Double>();
 		for(int i = room_i-1; i <= room_i+1; i++) {
 			for(int j = room_j-1; j <= room_j+1; j++) {
-				for (Line2D.Double c : R.gp.rooms[i][j].getCollisions()) {
+				for (Line2D.Double c : R.gp.rooms[i][j].getHardCollisions()) {
 					x1 = c.x1+(double)(R.gp.S_WIDTH*i);
 					x2 = c.x2+(double)(R.gp.S_WIDTH*i);
 					y1 = c.y1+(double)(R.gp.S_HEIGHT*j);
 					y2 = c.y2+(double)(R.gp.S_HEIGHT*j);
 					d = (y2>y1)?1.0:-1.0; r = (x2>x1)?1.0:-1.0;
-					addIfConflict(collisions, new Line2D.Double(x1-w*r, y1-h*d, x1+w*d, y1-h*r));
-					addIfConflict(collisions, new Line2D.Double(x1+w*d, y1-h*r, x2+w*d, y2-h*r));
-					addIfConflict(collisions, new Line2D.Double(x2+w*d, y2-h*r, x2+w*r, y2+h*d));
+					if(y1==y2) {
+						addIfConflict(collisions, new Line2D.Double(x1-w*r, y1-h*r, x2+w*r, y2-h*r));
+					} else if (x1==x2) {
+						addIfConflict(collisions, new Line2D.Double(x1+w*d, y1-h*d, x2+w*d, y2+h*d));
+					} else {
+						addIfConflict(collisions, new Line2D.Double(x1-w*r, y1-h*d, x1+w*d, y1-h*r));
+						addIfConflict(collisions, new Line2D.Double(x1+w*d, y1-h*r, x2+w*d, y2-h*r));
+						addIfConflict(collisions, new Line2D.Double(x2+w*d, y2-h*r, x2+w*r, y2+h*d));
+					}
+				}
+				for (Line2D.Double c : R.gp.rooms[i][j].getSoftCollisions()) {
+					x1 = c.x1+(double)(R.gp.S_WIDTH*i);
+					x2 = c.x2+(double)(R.gp.S_WIDTH*i);
+					y1 = c.y1+(double)(R.gp.S_HEIGHT*j);
+					y2 = c.y2+(double)(R.gp.S_HEIGHT*j);
+					addIfConflict(collisions, new Line2D.Double(x1, y1+h, x2, y2+h));
 				}
 			}
 		}
