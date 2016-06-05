@@ -124,10 +124,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	public void keyPressed(KeyEvent e) {
 		R.pressedKeys.add(e.getKeyCode());
 		if(e.getKeyCode() == KeyEvent.VK_1){
-			p.setWeaponEquiped(new Fists());
+			synchronized(p) {p.setWeaponEquiped(new Fists());}
 		}
 		if(e.getKeyCode() == KeyEvent.VK_2){
-			p.setWeaponEquiped(new Gun());
+			synchronized(p) {p.setWeaponEquiped(new Gun());}
 		}
 	}
 
