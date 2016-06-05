@@ -81,7 +81,7 @@ public class Entity implements Drawable {
 					x2 = c.x2+(double)(R.gp.S_WIDTH*i);
 					y1 = c.y1+(double)(R.gp.S_HEIGHT*j);
 					y2 = c.y2+(double)(R.gp.S_HEIGHT*j);
-					addIfConflict(collisions, new Line2D.Double(x1, y1+h, x2, y2+h));
+					addIfConflict(collisions, new Line2D.Double(x1, y1-h, x2, y2-h));
 				}
 			}
 		}
