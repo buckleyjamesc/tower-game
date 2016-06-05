@@ -8,7 +8,6 @@ public class WalkingAnimation extends Animation {
 	
 	public WalkingAnimation(Player p) {
 		super(R.walking);
-		setLocation(400, 300);
 		setCenter(15,35);
 		setDelayTime(50);
 		this.p = p;
@@ -16,6 +15,7 @@ public class WalkingAnimation extends Animation {
 	
 	@Override
 	protected void update() {
+		setLocation(R.getCenterX(),R.getCenterY());
 		if(Math.abs(p.dx) > 0.001) {
 			setDelayTime(Math.abs(400*0.75/p.dx));
 		} else {

@@ -43,6 +43,11 @@ public class R {
 	public static GamePanel gp;
 	public static Set<Entity> toRemove = new HashSet<Entity>();
 	public static Set<Integer> pressedKeys = new HashSet<Integer>();
+
+	public static double getWidth() { return gp.getWidth(); }
+	public static double getHeight() { return gp.getHeight(); }
+	public static double getCenterX() { return getWidth()/2.0; }
+	public static double getCenterY() { return getHeight()/2.0; }
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();

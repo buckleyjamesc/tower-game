@@ -9,7 +9,7 @@ public class Gun extends Weapon{
 	public Gun(){
 		gun = R.gun;	
 		si = new StillImage(gun);
-		si.setLocation(400.0, 305.0);
+		si.setLocation(R.getCenterX(), R.getCenterY()+5.0);
 		si.setCenter(50,45);
 	}
 	@Override
@@ -19,6 +19,7 @@ public class Gun extends Weapon{
 
 	@Override
 	public void update() {
+		si.setLocation(R.getCenterX(), R.getCenterY()+5.0);
 		if(Math.cos(angle) < 0.0) {
 			si.setImage(R.flip(R.gun));
 			si.setRotation(angle+Math.PI);

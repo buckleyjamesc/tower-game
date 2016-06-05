@@ -19,7 +19,7 @@ public class Bullet extends Projectile{
 	public void update() {
 		super.update();
 		si.setRotation(angle);
-		si.setLocation(x-R.gp.p.x+400, y-R.gp.p.y+300);
+		si.setLocation(x-R.gp.p.x+R.getCenterX(), y-R.gp.p.y+R.getCenterY());
 	}
 	
 	public void interactWith(Entity e) {

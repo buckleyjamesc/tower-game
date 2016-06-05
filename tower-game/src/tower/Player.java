@@ -56,7 +56,7 @@ public class Player extends Entity {
 		}
 		
 		//should be negative but... works when it is not negative !? check this
-		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - 295, MouseMotionHandler.x - 400)));
+		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - R.getCenterY()-5.0, MouseMotionHandler.x - R.getCenterX())));
 		weaponEquiped.update();
 	}
 

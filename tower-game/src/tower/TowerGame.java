@@ -28,6 +28,7 @@ public class TowerGame {
 		frame.setLocation(new Point(0, 0));
 		frame.setLocation(location);
 		frame.pack();
-        t.start();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		t.start();
 	}
 }

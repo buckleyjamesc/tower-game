@@ -8,7 +8,6 @@ public class JumpingAnimation extends Animation {
 	
 	public JumpingAnimation(Player p) {
 		super(R.jumping);
-		setLocation(400, 300);
 		setCenter(15,35);
 		setDelayTime(100);
 		this.p = p;
@@ -16,7 +15,7 @@ public class JumpingAnimation extends Animation {
 	
 	@Override
 	protected void update() {
-		//setDelayTime(Math.abs(400*0.75/p.dx));
+		setLocation(R.getCenterX(),R.getCenterY());
 		super.update();
 	}
 	

@@ -33,11 +33,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		R.gp = this;
 		this.frame = frame;
 		rooms = new Room[0][0];
+		width = 5;
+		height = 25;
 		entities = Collections.synchronizedList(new ArrayList<Entity>());
-		p = new Player(1000,1100);
-		entities.add(p);
-		width = 3;
-		height = 15;
 		addMouseMotionListener(new MouseMotionHandler());
 	}
 	
@@ -46,6 +44,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	}
 	
 	private void update() {
+		if(p==null) {
+			p = new Player(1000,600*height+500);
+			entities.add(p);
+		}
 		// Update all entities
 		synchronized(entities) {
 		for(Entity e : entities) {
@@ -98,8 +100,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 		for(int i = (room_i-1>=0)?room_i-1:0; i <= room_i+1 && i < rooms.length; i++) {
 			for(int j = (room_j-1>=0)?room_j-1:0; j <= room_j+1 && j < rooms[i].length; j++) {
-				g.drawImage(rooms[i][j].getImage(), (int)(400 + S_WIDTH*i - p.x),
-							(int)(300 + S_HEIGHT*j - p.y), S_WIDTH, S_HEIGHT,this);
+				g.drawImage(rooms[i][j].getImage(), (int)(R.getCenterX() + S_WIDTH*i - p.x),
+							(int)(R.getCenterY() + S_HEIGHT*j - p.y), S_WIDTH, S_HEIGHT,this);
 			}
 		}
 		synchronized(entities) {
