@@ -87,7 +87,11 @@ public class WorldBuilder {
 							temp[i][j] = new Room("sky_corner");
 						} else {
 							if(i == 0 || i == w+1) {
-								temp[i][j] = new Room("sky_vert");
+								if(j == h) {
+									temp[i][j] = new Room("sky_vert_bottom");
+								} else {
+									temp[i][j] = new Room("sky_vert");
+								}
 							} else {
 								temp[i][j] = new Room("sky_horiz");
 							}

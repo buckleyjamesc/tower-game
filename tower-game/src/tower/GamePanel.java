@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		R.gp = this;
 		this.frame = frame;
 		rooms = new Room[0][0];
-		width = 5;
+		width = 3;
 		height = 25;
 		entities = Collections.synchronizedList(new ArrayList<Entity>());
 		addMouseMotionListener(new MouseMotionHandler());
