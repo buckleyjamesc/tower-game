@@ -24,6 +24,7 @@ public class R {
 	public static final Integer DOWN_KEY = KeyEvent.VK_S;
 	public static final Integer LEFT_KEY = KeyEvent.VK_A;
 	public static final Integer RIGHT_KEY = KeyEvent.VK_D;
+	public static final Integer SHIFT_KEY = KeyEvent.VK_SHIFT;
 	public static final int DOOR_W = 60;
 	public static final int DOOR_H = 100;
 	private static Map<String, Image> imageMap = new HashMap<String, Image>();
