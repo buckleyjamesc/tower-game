@@ -139,6 +139,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		if(e.getKeyCode() == KeyEvent.VK_2){
 			synchronized(entities) {p.setWeaponEquiped(new Gun());}
 		}
+		if(e.getKeyCode() == KeyEvent.VK_3){
+			synchronized(entities) {p.setWeaponEquiped(new Bazooka());}
+		}
 	}
 
 	@Override
