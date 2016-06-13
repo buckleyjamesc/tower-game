@@ -49,8 +49,10 @@ public class Player extends Entity {
 			dy = -13;
 		}
 		if(getState() == State.WALKING && R.pressedKeys.contains(R.SHIFT_KEY)) {
-			hud.setStamina(hud.getStamina() - .7);
-			dx *= 1.01;
+			if(hud.getStamina() >= 1.2){
+				hud.setStamina(hud.getStamina() - 1.2);
+				dx *= 1.01;
+			}
 		}
 		// Left/right movement code
 		double speed = 5; f = 0.9;
