@@ -64,4 +64,10 @@ public class Hud implements Drawable{
 	public double getStamina(){
 		return stamina;
 	}
+	public void setHP(double hp){
+		this.hp = hp;
+	}
+	public double getHP(){
+		return hp;
+	}
 }

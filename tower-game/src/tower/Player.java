@@ -1,6 +1,7 @@
 package tower;
 
 import java.awt.Graphics;
+import java.awt.geom.Line2D;
 
 public class Player extends Entity {
 	private State state = null;
@@ -65,7 +66,6 @@ public class Player extends Entity {
 		//should be negative but... works when it is not negative !? check this
 		weaponEquiped.setAngle((Math.atan2(MouseMotionHandler.y - R.getCenterY()-5.0, MouseMotionHandler.x - R.getCenterX())));
 		weaponEquiped.update();
-		
 		//update the hud
 		hud.update();
 	}
@@ -95,5 +95,13 @@ public class Player extends Entity {
 	}
 	public Hud getHud(){
 		return hud;
+	}
+	
+	@Override
+	public void onCollision(Line2D.Double c) {
+		if(dy > 15){
+			hud.setHP(hud.getHP() - Math.pow(dy, 2) * .3);
+		}
+		super.onCollision(c);
 	}
 }
