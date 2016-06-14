@@ -2,7 +2,6 @@ package tower;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon;
 
 public class Hud implements Drawable{
 	double hp;

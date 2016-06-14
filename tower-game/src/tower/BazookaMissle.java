@@ -8,7 +8,7 @@ public class BazookaMissle extends Projectile{
 	public BazookaMissle(double x, double y, Weapon parent) {
 		super(x, y, parent);
 		si = new StillImage(R.bazookamissle);
-		si.setCenter(5, 2);
+		si.setCenter(20, 10);
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class BazookaMissle extends Projectile{
 	}
 	@Override
 	public void onCollision(Line2D.Double c) {
-		//todo spawnn an explosion
 		super.onCollision(c);
+		R.addEntity(new Explosion(x, y));
 		R.removeEntity(this);
 	}
 }

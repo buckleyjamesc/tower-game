@@ -46,6 +46,7 @@ public class R {
 	public static AffineTransform identity;
 	public static GamePanel gp;
 	public static Set<Entity> toRemove = new HashSet<Entity>();
+	public static Set<Entity> toAdd = new HashSet<Entity>();
 	public static Set<Integer> pressedKeys = new HashSet<Integer>();
 
 	public static double getWidth() { return gp.getWidth(); }
@@ -185,11 +186,20 @@ public class R {
 	public static void removeEntity(Entity e) {
 		toRemove.add(e);
 	}
-	public static void removeEntities() {
+	public static void updateEntities() {
 		synchronized(gp.entities) {
 		for(Entity e : toRemove) {
 			gp.entities.remove(e);
 		}}
 		toRemove.clear();
+		synchronized(gp.entities) {
+		for(Entity e : toAdd) {
+			gp.entities.add(e);
+		}}
+		toAdd.clear();
+	}
+	
+	public static void addEntity(Entity e) {
+		toAdd.add(e);
 	}
 }

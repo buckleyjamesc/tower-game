@@ -31,9 +31,9 @@ public class Bazooka extends Weapon {
 	@Override
 	public void onClick() {
 		if(Math.cos(angle) < 0.0) {
-			R.gp.entities.add(new BazookaMissle(R.gp.p.x - 10.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y + 5.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this));
+			R.addEntity(new BazookaMissle(R.gp.p.x - 12.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y + 12.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this));
 		} else {
-			R.gp.entities.add(new BazookaMissle(R.gp.p.x + 10.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y - 5.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this));
+			R.addEntity(new BazookaMissle(R.gp.p.x + 12.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y - 12.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this));
 		}
 	}
 }

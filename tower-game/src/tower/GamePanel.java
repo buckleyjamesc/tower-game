@@ -86,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		}}
 		
 		// Actually remove the ones which were told to be removed
-		R.removeEntities();
+		R.updateEntities();
 	}
 	
 	@Override
