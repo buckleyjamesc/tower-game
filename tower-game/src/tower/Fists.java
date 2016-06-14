@@ -15,6 +15,7 @@ public class Fists extends Weapon{
 	}
 	@Override
 	public void update() {
+		si.setLocation(R.getCenterX(), R.getCenterY()+5.0);
 		if(Math.cos(angle) < 0.0) {
 			si.setImage(R.flip(R.fists));
 			si.setRotation(angle+Math.PI);

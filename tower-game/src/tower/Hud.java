@@ -12,8 +12,8 @@ public class Hud implements Drawable{
 	double stamRegin;
 	final double STARTINGSTAM = 100;
 	final double STARTINGHP = 400;
-	final int HEIGHT = 50;
-	final int LENGTH = 400;
+	final int HEIGHT = 35;
+	final int LENGTH = 300;
 
 	public Hud(){
 		maxHP = 400;
