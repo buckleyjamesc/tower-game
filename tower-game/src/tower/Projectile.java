@@ -16,7 +16,15 @@ public class Projectile extends Entity {
 		dx = Math.cos(angle) * 10.0 + R.gp.p.dx;
 		dy = Math.sin(angle) * 10.0 + R.gp.p.dy;
 	}
-
+	public Projectile(double x, double y, Weapon parent, double dFactor) {
+		super(10,10);
+		angle = parent.getAngle();
+		this.x = x;
+		this.y = y;
+		this.parent = parent;
+		dx = Math.cos(angle) * 10.0 * dFactor + R.gp.p.dx ;
+		dy = Math.sin(angle) * 10.0 * dFactor + R.gp.p.dy ;
+	}
 	@Override
 	public void applyGravity() {
 		dy += .05;

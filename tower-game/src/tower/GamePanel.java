@@ -27,7 +27,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	public int width, height;
 	public Room[][] rooms;
 	public List<Entity> entities;
-
+	public static boolean isPressing;
+	public static long timeStartPress;
 	
 	public GamePanel(JFrame frame) {
 		R.gp = this;
@@ -127,9 +128,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		synchronized(entities) {p.onClick();}
+		synchronized(entities) {p.onClick(); isPressing = false;}
 	}
-
+	public void mousePressed(MouseEvent e) {
+		if(!isPressing){
+			timeStartPress = System.currentTimeMillis(); 
+			isPressing = true;
+		}
+	}
 	@Override
 	public void keyPressed(KeyEvent e) {
 		R.pressedKeys.add(e.getKeyCode());
@@ -142,6 +148,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		if(e.getKeyCode() == KeyEvent.VK_3){
 			synchronized(entities) {p.setWeaponEquiped(new Bazooka());}
 		}
+		if(e.getKeyCode() == KeyEvent.VK_4){
+			synchronized(entities) {p.setWeaponEquiped(new Bow());}
+		}
 	}
 
 	@Override
@@ -153,6 +162,5 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	public void mouseClicked(MouseEvent e) {}
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
-	public void mousePressed(MouseEvent e) {}
 	public void keyTyped(KeyEvent e) {}
 }

@@ -4,11 +4,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class Gun extends Weapon{
-	Image gun;
 	StillImage si;
 	public Gun(){
-		gun = R.gun;	
-		si = new StillImage(gun);
+		si = new StillImage(R.gun);
 		si.setLocation(R.getCenterX(), R.getCenterY()+5.0);
 		si.setCenter(50,45);
 	}

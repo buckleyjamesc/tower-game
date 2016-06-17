@@ -14,7 +14,6 @@ public class BazookaMissle extends Projectile{
 	@Override
 	public void draw(Graphics g) {
 		si.draw(g);
-		
 	}
 
 	@Override

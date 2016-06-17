@@ -41,6 +41,8 @@ public class R {
 	public static BufferedImage bullet;
 	public static BufferedImage fists;
 	public static BufferedImage bazooka;
+	public static BufferedImage bow;
+	public static BufferedImage arrow;
 	public static BufferedImage bazookamissle;
 	public static BufferedImage explosion;
 	public static AffineTransform identity;
@@ -56,12 +58,14 @@ public class R {
 	
 	public static void init() throws IOException {
 		identity = new AffineTransform();
-		gun = ImageIO.read(new File("src/resources/" + "gun2" + ".png"));
-		fists = ImageIO.read(new File("src/resources/" + "fists" + ".png"));
-		bullet = ImageIO.read(new File("src/resources/" + "bullet" + ".png"));
-		bazooka = ImageIO.read(new File("src/resources/" + "bazooka" + ".png"));
-		bazookamissle = ImageIO.read(new File("src/resources/" + "bazookamissle" + ".png"));
-		explosion = ImageIO.read(new File("src/resources/" + "explosion" + ".png"));
+		gun = ImageIO.read(new File("src/resources/gun2.png"));
+		fists = ImageIO.read(new File("src/resources/fists.png"));
+		bullet = ImageIO.read(new File("src/resources/bullet.png"));
+		bazooka = ImageIO.read(new File("src/resources/bazooka.png"));
+		bazookamissle = ImageIO.read(new File("src/resources/bazookamissle.png"));
+		explosion = ImageIO.read(new File("src/resources/explosion.png"));
+		bow = ImageIO.read(new File("src/resources/bow.png"));
+		arrow = ImageIO.read(new File("src/resources/arrow.png"));
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));
