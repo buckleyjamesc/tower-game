@@ -31,9 +31,9 @@ public class Bow extends Weapon{
 	@Override
 	public void onClick() {
 		if(Math.cos(angle) < 0.0) {
-			R.addEntity(new Arrow(R.gp.p.x - 8.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y + 8.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this, Math.sqrt((System.currentTimeMillis() - GamePanel.timeStartPress+ 500)) / 40.0));
+			R.addEntity(new Arrow(R.gp.p.x - 8.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y + 8.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0), this, Math.pow((System.currentTimeMillis() - GamePanel.timeStartPress+ 500), .88) / 700.0));
 		} else {
-			R.addEntity(new Arrow(R.gp.p.x + 8.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y - 8.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0),this,Math.sqrt((System.currentTimeMillis() - GamePanel.timeStartPress+ 500)) / 40.0));
+			R.addEntity(new Arrow(R.gp.p.x + 8.0*Math.sin(angle) + Math.cos(angle) * Math.sqrt(15.0*15.0+35.0*35.0), R.gp.p.y - 8.0*Math.cos(angle) + Math.sin(angle) * Math.sqrt(15.0*15.0+35.0*35.0),this,Math.pow((System.currentTimeMillis() - GamePanel.timeStartPress+ 500), .88) / 700.0));
 		}
 	
 	}
