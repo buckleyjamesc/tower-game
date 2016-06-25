@@ -45,6 +45,7 @@ public class R {
 	public static BufferedImage arrow;
 	public static BufferedImage bazookamissle;
 	public static BufferedImage explosion;
+	public static BufferedImage bowhands;
 	public static AffineTransform identity;
 	public static GamePanel gp;
 	public static Set<Entity> toRemove = new HashSet<Entity>();
@@ -66,6 +67,7 @@ public class R {
 		explosion = ImageIO.read(new File("src/resources/explosion.png"));
 		bow = ImageIO.read(new File("src/resources/bow.png"));
 		arrow = ImageIO.read(new File("src/resources/arrow.png"));
+		bowhands = ImageIO.read(new File("src/resources/bowhands.png"));
 		for(int i = 0; i < 4; ++i) {
 			String fileName = "src/resources/" + "player_walking_" + i + ".png";
 			BufferedImage image = ImageIO.read(new File(fileName));

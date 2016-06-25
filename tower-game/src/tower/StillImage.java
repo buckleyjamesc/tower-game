@@ -12,7 +12,9 @@ public class StillImage implements Drawable {
 	private double centerX;	// The x location on the image which is the center
 	private double centerY;	// The y location on the image which is the center
 	private double theta;	// The angle of rotation around the center to use when drawing the image
-	
+	private double xScale; 
+	private double yScale;
+	private double difference;
 	/**
 	 * @param frames The list of images which will be cycled through
 	 * @effects creates a new animation object, initializing all variables.
@@ -21,6 +23,7 @@ public class StillImage implements Drawable {
 		setLocation(0.0,0.0);
 		setCenter(0.0,0.0);
 		setRotation(0.0);
+		setScale(1.0,1.0);
 		setImage(image);
 	}
 	
@@ -32,6 +35,9 @@ public class StillImage implements Drawable {
 	protected void buildTransform(AffineTransform trans) {
 		trans.translate(screenX,screenY);
 		trans.rotate(theta);
+		trans.translate(difference, 0);
+		trans.scale(xScale,yScale);
+		trans.translate(-1*difference, 0);
 		trans.translate(-centerX,-centerY);
 	}
 	
@@ -70,5 +76,14 @@ public class StillImage implements Drawable {
 	
 	public void setImage(Image image) {
 		this.image = image;
+	}
+	
+	public void setDifference(double difference){
+		this.difference = difference;
+	}
+	
+	public void setScale(double xScale, double yScale){
+		this.xScale = xScale;
+		this.yScale = yScale;
 	}
 }

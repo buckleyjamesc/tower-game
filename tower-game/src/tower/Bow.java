@@ -4,8 +4,13 @@ import java.awt.Graphics;
 
 public class Bow extends Weapon{
 	StillImage si;
+	StillImage hands;
 	long startClick;
 	public Bow(){
+		hands = new StillImage(R.bowhands);
+		hands.setLocation(R.getCenterX(), R.getCenterX() + 5.0);
+		hands.setCenter(50,45);
+		hands.setDifference(13);
 		si = new StillImage(R.bow);
 		si.setLocation(R.getCenterX(), R.getCenterX() + 5.0);
 		si.setCenter(50,45);
@@ -14,17 +19,29 @@ public class Bow extends Weapon{
 	@Override
 	public void draw(Graphics g) {
 		si.draw(g);
+		hands.draw(g);
 	}
 
 	@Override
 	public void update() {
+		if(GamePanel.isPressing){
+			hands.setScale(Math.pow((System.currentTimeMillis() - GamePanel.timeStartPress+ 500), .11), 1);
+		}
+		else{
+			hands.setScale(1, 1);
+		}
 		si.setLocation(R.getCenterX(), R.getCenterY()+5.0);
+		hands.setLocation(R.getCenterX(), R.getCenterY()+5.0);
 		if(Math.cos(angle) < 0.0) {
 			si.setImage(R.flip(R.bow));
 			si.setRotation(angle+Math.PI);
+			hands.setImage(R.flip(R.bowhands));
+			hands.setRotation(angle+Math.PI);
 		} else {
 			si.setImage(R.bow);
 			si.setRotation(angle);
+			hands.setImage(R.bowhands);
+			hands.setRotation(angle);
 		}		
 	}
 
