@@ -37,11 +37,13 @@ public class Bow extends Weapon{
 			si.setRotation(angle+Math.PI);
 			hands.setImage(R.flip(R.bowhands));
 			hands.setRotation(angle+Math.PI);
+			hands.setDifference(-1 * 13);
 		} else {
 			si.setImage(R.bow);
 			si.setRotation(angle);
 			hands.setImage(R.bowhands);
 			hands.setRotation(angle);
+			hands.setDifference(13);
 		}		
 	}
 
