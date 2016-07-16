@@ -26,14 +26,21 @@ public class BazookaMissle extends Projectile{
 	public void interactWith(Entity e) {
 		// Just interact with Players for now.
 		if(e instanceof Player) {
-			R.removeEntity(this);
-		} else {
+			explode();
+		} 
+		else if(e instanceof BazookaMissle) {
+			explode();
+		} 
+		else {
 			System.out.println("No interaction defined between " + this.getClass() + " and " + e.getClass());
 		}
 	}
 	@Override
 	public void onCollision(Line2D.Double c) {
 		super.onCollision(c);
+		explode();
+	}
+	public void explode(){
 		R.addEntity(new Explosion(x, y));
 		R.removeEntity(this);
 	}
